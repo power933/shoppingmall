@@ -17,6 +17,7 @@ mpass char(250),
 mname char(20) not null,
 memail varchar(100) not null,
 mtel char(12) not null,
+maddrnum char(10) not null,
 maddr varchar(250) not null
 );
 
