@@ -11,13 +11,15 @@ agreement/agreement
 
 유저 정보 테이블
 
-create table member(
+create table members(
 mid varchar(25) not null,
 mpass char(250),
 mname char(20) not null,
 memail varchar(100) not null,
 mtel char(12) not null,
-maddr varchar(250) not null
+maddrnum char(10) not null,
+maddr varchar(100) not null,
+maddrdetail varchar(150) not null
 );
 
 로그인용용 심플 테이블
