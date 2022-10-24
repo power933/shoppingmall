@@ -10,10 +10,23 @@ import java.util.List;
 public class JoinServiceImpl implements JoinService{
     @Autowired
     JoinMapper joinMapper;
-    public int updateMember(JoinDTO joinDTO){
+    public int updateMember(JoinRequestDTO joinRequestDTO){
+
+        JoinDTO joinDTO = requestDtoToDTo(joinRequestDTO);
         return joinMapper.memberUpdate(joinDTO);
     }
     public List<JoinDTO> getAll(){
+
         return joinMapper.getAll();
+    }
+
+    @Override
+    public JoinDTO selectById(String mid) {
+        return joinMapper.findById(mid);
+    }
+
+    @Override
+    public JoinDTO selectByEmail(String memail) {
+        return joinMapper.findByEmail(memail);
     }
 }

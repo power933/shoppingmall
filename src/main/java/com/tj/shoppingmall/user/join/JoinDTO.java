@@ -15,7 +15,9 @@ public class JoinDTO {
     private String mname;
     private String memail;
     private String mtel;
+    private String maddrnum;
     private String maddr;
+    private String maddrdetail;
 
 
 }

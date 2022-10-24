@@ -58,7 +58,7 @@
 <div id="layout_wrap" class="layout_wrap">
     <%@ include file="../parts/top.html" %>
 </div>
-<form action="/join" method="post">
+<form name="f" action="/join-member" method="post">
 <div class="resp_wrap display_wrap">
     <!--회원가입 영역 join.html-->
     <%@ include file="join.jsp" %>

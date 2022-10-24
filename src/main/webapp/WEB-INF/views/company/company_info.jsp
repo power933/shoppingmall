@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+		 pageEncoding="UTF-8"%>
 <div class="visual_title">
 	<div class="img_area">
 		<img src="./images/bnr_company_main.jpg" title="회사 이미지" alt="회사 이미지" />
@@ -6,7 +7,7 @@
 	<div class="visual_gon">
 		<ul class="title_inner_a">
 			<li>
-				<p class="descr" designElement="text" textIndex="1" >TRENDY LIVING IDEA /</p> 
+				<p class="descr" designElement="text" textIndex="1" >TRENDY LIVING IDEA /</p>
 				<h2><span designElement="text" textIndex="2" >TOWNHOUSE LOGO</span></h2>
 			</li>
 		</ul>
@@ -14,14 +15,25 @@
 </div>
 <div class="service_section v3">
 	<h3 class="title1"><span designElement="text">CONTACT</span></h3>
-	<p designElement="text">주소출력부분 <br>TOWNHOUSE</p>
-    <p designElement="text">t. 010-0000-1111</p>
-    <p designElement="text">operation hour. 11:00 ~ 20:00 (연중무휴)</p>
+	<p designElement="text">우편번호 : ${dto.spost}<br> ${dto.saddr} <br>${dto.scompany_name}</p>
+	<p designElement="text">t. ${dto.stel}</p>
+	<p designElement="text">operation hour. 11:00 ~ 20:00 (연중무휴)</p>
 	<p>
-    <div id='page-title-bar-area'>
-        <div id='showmap' style='width:300px;height:300px;'>
-        <!--지도 API 출력 부분-->
-        </div>
-    </div>
-    </p>
-    </div>
+	<div id='page-title-bar-area'>
+		<div id='showmap' style='width:300px;height:300px;'>
+			<!--지도 API 출력 부분-->
+			<div id="map" style="width:500px;height:400px;"></div>
+		</div>
+
+		<script>
+			var container = document.getElementById('showmap'); //지도를 담을 영역의 DOM 레퍼런스
+			var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.618595,127.007238), //지도의 중심좌표.
+				level: 3 //지도의 레벨(확대, 축소 정도)
+			};
+
+			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+		</script>
+	</div>
+	</p>
+</div>

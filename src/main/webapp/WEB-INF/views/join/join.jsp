@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <div class="title_container">
     <h2><span designElement="text" textIndex="1">회원정보 입력</span></h2>
 </div>
@@ -15,7 +16,7 @@
             <ul class="required">
                 <li class="th "><p designElement="text" textIndex="8" >아이디</p></li>
                 <li class="td">
-                    <input type="text" id="userid" autocapitalize="off" value="" id="mid" name="mid" class="eng_only" placeholder="공백 없는 영문/숫자 포함 6~20자" />
+                    <input type="text" id="userid" autocapitalize="off" value=""  name="mid" class="eng_only" placeholder="공백 없는 영문/숫자 포함 6~20자"  />
                     <p id="id_info" class="guide_text"></p>
                 </li>
             </ul>
@@ -24,17 +25,20 @@
                 <li class="td">
                     <input type="password" value="" id="mpass" name="mpass" class="eng_only class_check_password_validation" />
                 </li>
+
             </ul>
             <ul class="required">
                 <li class="th "><p designElement="text" textIndex="12" >비밀번호 확인</p></li>
                 <li class="td">
                     <input type="password" value="" id="mpassck" class="eng_only" />
+                    <p id="pass_info" class="guide_text"></p>
                 </li>
+
             </ul>
             <ul class="required">
                 <li class="th"><p designElement="text" textIndex="13" >이름</p></li>
                 <li class="td">
-                    <input type="text" value="" name="mname"  />
+                    <input type="text" value="" name="mname" id ="mname"  />
                 </li>
             </ul>
             <ul class="required">
@@ -58,6 +62,7 @@
                         <option value="hanmail.net">hanmail.net</option>
                         <option value="hotmail.com">hotmail.com</option>
                     </select>
+                    <p id="email_info" class="guide_text"></p>
                 </li>
             </ul>
             <ul class="required">
@@ -72,14 +77,14 @@
                 <li class="th "><p designElement="text" textIndex="22" >주소</p></li>
                 <li class="td">
                     <input type="hidden" value=""/>
-                    <input type="tel" value="" class="size_zip_all" id="addr0" name="addr0" readonly />
+                    <input type="tel" value="" class="size_zip_all" id="addr0" name="maddrnum" readonly />
                     <button type="button" class="btn_resp size_b color4"><span designElement="text" textIndex="23" id="findaddr" >주소찾기</span></button>
                     <div class="address_area">
-                        <input type="text" value="" id="addr1" name="addr1"  class="address size_full " readonly />
+                        <input type="text" value="" id="addr1" name="maddr"  class="address size_full " readonly />
                         <input type="text" value=""  class="address_street size_full hide" readonly />
                     </div>
                     <div class="address_area">
-                        <input type="text" value="" id="addr2" name="addr2" class="size_full" />
+                        <input type="text" value="" id="addr2" name="maddrdetail" class="size_full" />
                     </div>
                     <p id="address_view" style="padding-top:5px; display:none;"></p>
                 </li>
@@ -152,9 +157,130 @@
     </script>
     <!-- ------- //회원가입 입력폼 ------- -->
 
+    <!-- ajax 유효성 검사 -->
+    <script>
+        var idValidate = false;
+        var pwValidate = false;
+        var emailValidate = false;
+
+        $('#userid').keyup(function () {    //아이디 중복 체크
+           var id = document.getElementById("userid").value;
+           $.ajax({
+               type: "GET",
+               url: "/join-idcheck?mid="+id,
+               data : "json",
+               contentType : "application/json; charset=utf-8",
+               error: function() {
+                   console.log('통신실패');
+               },
+               success: function(data) {
+                   if(data.result){
+                       id_info.innerHTML = "사용가능한 아이디 입니다";
+                       idValidate = true;
+                   }
+                   else{
+                       id_info.innerHTML = "사용불가능한 아이디 입니다";
+                       idValidate = false;
+                   }
+               }
+           });
+       });
+
+        $('#find_email').blur(function () { //메일 셀렉트박스에서 포커스 아웃시 중복체크
+            var memail = $("#memail0").val()+"@"+$("#memail1").val() ;
+            $.ajax({
+                type: "GET",
+                url: "/join-emailcheck?memail="+memail,
+                data : "json",
+                contentType : "application/json; charset=utf-8",
+                error: function() {
+                    console.log('통신실패');
+                },
+                success: function(data) {
+                    if(data.result){
+                        email_info.innerHTML = "사용가능한 이메일 입니다";
+                        emailValidate = true;
+                    }
+                    else{
+                        email_info.innerHTML = "사용불가능한 이메일 입니다";
+                        emailValidate = false;
+                    }
+                }
+            });
+        });
+
+        $('#memail1').keyup(function () { //메일1 수정시 체크
+            var memail = $("#memail0").val()+"@"+$("#memail1").val() ;
+            $.ajax({
+                type: "GET",
+                url: "/join-emailcheck?memail="+memail,
+                data : "json",
+                contentType : "application/json; charset=utf-8",
+                error: function() {
+                    console.log('통신실패');
+                },
+                success: function(data) {
+                    if(data.result && $("#memail1").val() !=""){
+                        email_info.innerHTML = "사용가능한 이메일 입니다";
+                        emailValidate = true;
+                    }
+                    else{
+                        email_info.innerHTML = "사용불가능한 이메일 입니다";
+                        emailValidate = false;
+                    }
+                }
+            });
+        });
+
+
+
+        $("#mpassck").keyup(function (){
+            if($("#mpass").val()==$("#mpassck").val()){
+                pass_info.innerHTML = "사용가능한 패스워드 입니다";
+                pwValidate = true;
+            }
+            else{
+                pass_info.innerHTML = "패스워드를 다시 확인해 주세요";
+                pwValidate = false;
+            }
+        })
+    </script>
+
     <div id="btn_register" class="btn_area_c">
-        <button type="submit" class="btn_resp size_c color2 Wmax">
+        <button type="button" id="btn" class="btn_resp size_c color2 Wmax">
             <span designElement="text">입력 완료</span>
         </button>
     </div>
 </div>
+<script>
+    document.getElementById("btn").addEventListener("click",ev => {
+       if(document.getElementById("userid").value == "")
+           alert("아이디를 입력해주세요");
+       else if(document.getElementById("mpass").value == "")
+           alert("비밀번호를 입력해주세요");
+       else if(document.getElementById("mname").value == "")
+           alert("이름을 입력해주세요");
+       else if(document.getElementById("memail0").value == "")
+           alert("이메일을 입력해주세요");
+       else if(document.getElementById("memail1").value == "")
+           alert("이메일을 입력해주세요");
+       else if(document.getElementById("mtel0").value == "")
+           alert("전화번호를 입력해주세요");
+       else if(document.getElementById("mtel1").value == "")
+           alert("전화번호를 입력해주세요");
+       else if(document.getElementById("mtel2").value == "")
+           alert("전화번호를 입력해주세요");
+       else if(document.getElementById("addr0").value == "")
+           alert("주소를 입력해주세요");
+       else if(document.getElementById("addr1").value == "")
+           alert("주소를 입력해주세요");
+       else if(document.getElementById("addr2").value == "")
+           alert("주소를 입력해주세요");
+       else{
+        if(idValidate && pwValidate && emailValidate)
+           f.submit();
+       else
+           alert("다시 한번 확인해주세요");
+       }
+    });
+</script>

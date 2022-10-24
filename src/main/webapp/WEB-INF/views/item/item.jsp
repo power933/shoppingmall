@@ -58,10 +58,11 @@
 <div id="layout_wrap" class="layout_wrap">
     <%@ include file="../parts/top.html" %>
 </div>
-	
+<form name="frm" id="frm">
 <div class="resp_wrap display_wrap">
-<%@ include file="item_view.jsp" %>  
+<%@ include file="item_view_test.jsp" %>
 </div>
+</form>
 <div id="layout_footer" class="layout_footer">
     <%@ include file="../parts/footer.html" %>
 </div>

@@ -18,7 +18,7 @@ public class JoinRequestDTO {
     private String mtel0;
     private String mtel1;
     private String mtel2;
-    private String maddr0;
-    private String maddr1;
-    private String maddr2;
+    private String maddrnum;
+    private String maddr;
+    private String maddrdetail;
 }

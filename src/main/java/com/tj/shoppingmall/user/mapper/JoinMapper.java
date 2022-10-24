@@ -10,10 +10,16 @@ import java.util.List;
 @Repository
 public interface JoinMapper {
 
-    @Select("select * from member")
+    @Select("select * from members")
     public List<JoinDTO> getAll();
-    @Insert("insert into member" +
+    @Insert("insert into members" +
             " values(#{mid},#{mpass},#{mname},#{memail}," +
-            "#{mtel},#{maddr})")
+            "#{mtel},#{maddrnum},#{maddr},#{maddrdetail})")
     public int memberUpdate(JoinDTO joinDTO);
+
+    @Select("select * from members where mid = #{mid}")
+    public JoinDTO findById(String mid);
+
+    @Select("select * from members where memail = #{memail}")
+    public JoinDTO findByEmail(String memail);
 }
