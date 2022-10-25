@@ -12,14 +12,15 @@ agreement/agreement
 유저 정보 테이블
 
 create table members(
-mid varchar(25) not null,
+mid varchar(25) not null primary key,
 mpass char(250),
 mname char(20) not null,
 memail varchar(100) not null,
 mtel char(12) not null,
 maddrnum char(10) not null,
 maddr varchar(100) not null,
-maddrdetail varchar(150) not null
+maddrdetail varchar(150) not null,
+indate datetime not null default '0001-01-01 01:01:01'
 );
 
 로그인용용 심플 테이블
@@ -29,6 +30,17 @@ mid varchar(25) not null,
 mpass char(250),
 primary key(mid)
 );
+
+장바구니 테이블
+create table cart(
+    cartId int auto_increment primary key,
+    mid varchar(25) not null,
+    pcode char(8) not null,
+    product_count int not null,
+    foreign key (mid) references members(mid),
+    foreign key (pcode) references product(pcode)
+);
+
 
 
 
