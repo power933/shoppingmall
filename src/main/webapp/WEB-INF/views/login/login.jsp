@@ -14,12 +14,13 @@
 </div>
 
 <!-- +++++++++++ 회원 +++++++++++ -->
+<form method="post" action="/loginck">
 <div id="member" class="loginTabContetns resp_login_wrap Mt0">
   <fieldset>
     <ul class="login_real_area">
       <li class="input_area">
-        <input type="text" id="userid" class="box_id" value="" placeholder="아이디" required="required">
-        <input type="password" id="password" class="box_pw" placeholder="비밀번호" password="password" required="required">
+        <input type="text" id="userid" name="mid" class="box_id" value="" placeholder="아이디" required="required">
+        <input type="password" id="password" name="mpass" class="box_pw" placeholder="비밀번호" password="password" required="required">
       </li>
       <li>
         <label class="id_save">
@@ -45,6 +46,7 @@
     </ul>
   </fieldset>
 </div>
+</form>
 <!-- +++++++++++ //회원 +++++++++++ -->
 
 

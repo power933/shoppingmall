@@ -59,7 +59,7 @@
 
 <div id="wrap">
     <div id="layout_wrap" class="layout_wrap">
-        <%@include file="../parts/top.html" %>
+        <%@include file="../parts/top.jsp" %>
     </div>
 
     <div class="resp_wrap display_wrap">
@@ -67,7 +67,7 @@
     </div>
 
     <div id="layout_footer" class="layout_footer">
-        <%@include file="../parts/footer.html" %>
+        <%@include file="../parts/footer.jsp" %>
     </div>
 
 </div>

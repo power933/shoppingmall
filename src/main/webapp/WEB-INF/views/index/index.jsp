@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko"  xmlns:fb="http://ogp.me/ns/fb#"  xmlns:og="http://ogp.me/ns#">
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/fb/website#">
@@ -57,32 +59,32 @@ background-color:#ffffff;}
 
 <div id="wrap">
 <div id="layout_wrap" class="layout_wrap">
-    <%@include file="../parts/top.html" %>
+    <%@include file="../parts/top.jsp" %>
 </div>
 <div class="sliderA wide_visual_slider">
-    <%@include file="../parts/banner.html" %>
+    <%@include file="../parts/banner.jsp" %>
 </div>
 
 <div class="resp_wrap display_wrap">
-	<%@include file="../parts/collection.html" %>
+	<%@include file="../parts/collection.jsp" %>
 </div>
 <br/>
 <br/>
 <br/>
 <div class="full_bnr">
-    <%@include file="../parts/av.html" %>
+    <%@include file="../parts/av.jsp" %>
 </div>
 <div class="full_bnr2">
-   <%@include file="../parts/av2.html" %>
+   <%@include file="../parts/av2.jsp" %>
 </div>
 <div class="resp_wrap display_wrap">
-   <%@include file="../parts/newproduct.html" %>
+   <%@include file="../parts/newproduct.jsp" %>
 </div>
 <div class="resp_wrap display_wrap">
-    <%@include file="../parts/bestproduct.html" %>
+    <%@include file="../parts/bestproduct.jsp" %>
 </div>
 <div id="layout_footer" class="layout_footer">
-    <%@include file="../parts/footer.html" %>
+    <%@include file="../parts/footer.jsp" %>
 </div>
 </div>
 <script type="text/javascript">

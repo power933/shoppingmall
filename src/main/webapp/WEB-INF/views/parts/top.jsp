@@ -213,11 +213,11 @@
                         </li> //-->
                         
                          <li class="custom_nav_link">
-							<a class="categoryDepthLink" designElement="text" textIndex="10" href="/service/company" target="_self">STORE</a>
+							<a class="categoryDepthLink" designElement="text" textIndex="10" href="/company" target="_self">STORE</a>
 						</li>	
                         
 						<li class="custom_nav_link">
-							<a class="categoryDepthLink" designElement="text" textIndex="11" href="/service/cs" target="_self">CUSTOMER CENTER</a>
+							<a class="categoryDepthLink" designElement="text" textIndex="11" href="/cs" target="_self">CUSTOMER CENTER</a>
 						</li>
 					</ul>
 				</div>

@@ -11,10 +11,13 @@
 
 <div id='designDisplay_633b83b7559e9' class='designDisplay' designElement='display' templatePath='main/index.html' displaySeq='10344' page='' perpage='' category='' displayStyle='responsible'>
 <ul class="displayTabContainer displayTabType1">
-        <li class="current" style="width:25%">소파/거실장</li>
+       <%-- <li class="current" style="width:25%">소파/거실장</li>
         <li style="width:25%">침대/매트리스</li>
         <li style="width:25%">식탁/식탁의자</li>
-        <li style="width:25%">쿠션/조명</li>
+        <li style="width:25%">쿠션/조명</li>--%>
+    <c:forEach var = "list" items="${cate}" varStatus="status" >
+        <li style="width:25%" onclick="location.href='/${list.ctotal_cate}'">${list.csmall_name}</li>
+    </c:forEach>
 </ul>
 
 <div class="designDisplay_633b83b7559e9 display_responsible_class displayTabContentsContainer displayTabContentsContainerBox" style="display: block;">
@@ -25,12 +28,14 @@
 
     
 <!--Celebrity Collection 상품출력 반복코드 -->
+<c:forEach var = "items" items="${items}">
 <li class="gl_item">
 <div class="gl_inner_item_wrap">
     <!--상품이미지-->
+
     <div class="gli_image goodsDisplayImageWrap">
         <a href="javascript:void(0);" class="respItemImageArea" onclick="display_goods_view('767','',this,'goods_view')">
-            <img src="./product/767_2022051214434020.jpg" data-src="./product/767_2022051214434020.jpg" class="goodsDisplayImage lazyload" onerror="this.src='./images/noimage.gif'" alt="[디앤에이] 아우라 천연가죽 4인소파"/>
+            <img src="${items.pimg1}" data-src="./product/767_2022051214434020.jpg" class="goodsDisplayImage lazyload" onerror="this.src='./images/noimage.gif'" alt="[디앤에이] 아우라 천연가죽 4인소파"/>
         </a>
         <div class="respGoodsZzim">
             <a class="zzimArea" href="javascript:void(0)" onclick="display_goods_zzim(this, 767)">
@@ -55,26 +60,26 @@
 
             <!-- 상품명-->
             <div class="goodS_info displaY_goods_name">
-                <span class="areA"><a href="/goods/view?no=767">[디앤에이] 아우라 천연가죽 4인소파</a></span>
+                <span class="areA"><a href="/item?pcode=${items.pcode}">${items.pname}</a></span>
             </div>
         </div>
 
         <!-- 짧은 설명 -->
         <div class="goodS_info displaY_goods_short_desc">
-            <span class="areA">스페인직수입 스마트 아쿠아릭</span>
+            <span class="areA">${items.psub_ex}</span>
         </div>
 
         <div class="infO_group">
             <!-- (할인혜택)판매가 -->
             <div class="goodS_info displaY_sales_price">
                 <span class="areA">
-                    <span class="nuM">8,910,000</span>&#x20a9;
+                    <span class="nuM"><fmt:formatNumber value="${items.psale}" pattern="#,###"/></span>&#x20a9;
                 </span>
             </div>
         </div>
     </div>
 </div>
-</li>
+</li></c:forEach>
 <!--Celebrity Collection 상품출력 반복코드 끝 -->
 
 </div>

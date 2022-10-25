@@ -23,7 +23,7 @@ public class JoinController {
     @RequestMapping("/join-member")
     public String joinMember(JoinRequestDTO joinRequestDTO){
 
-        int result = joinService.updateMember(joinRequestDTO);
+        int result = joinService.insertMember(joinRequestDTO);
         if(result>0){
             return "index/index";
         }

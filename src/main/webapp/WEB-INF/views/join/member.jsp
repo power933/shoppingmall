@@ -56,7 +56,7 @@
 
 <div id="wrap">
 <div id="layout_wrap" class="layout_wrap">
-    <%@ include file="../parts/top.html" %>
+    <%@ include file="../parts/top.jsp" %>
 </div>
 <form name="f" action="/join-member" method="post">
 <div class="resp_wrap display_wrap">
@@ -65,7 +65,7 @@
 </div>
 </form>
 <div id="layout_footer" class="layout_footer">
-    <%@ include file="../parts/footer.html" %>
+    <%@ include file="../parts/footer.jsp" %>
 </div>
 
 </div>

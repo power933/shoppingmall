@@ -1,17 +1,15 @@
-package com.tj.shoppingmall.user.join;
+package com.tj.shoppingmall.user.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
-@Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class JoinDTO {
+@Builder
+public class LoginDTO {
     private String mid;
     private String mpass;
     private String mname;
@@ -20,6 +18,5 @@ public class JoinDTO {
     private String maddrnum;
     private String maddr;
     private String maddrdetail;
-    private LocalDateTime indate;
 
 }

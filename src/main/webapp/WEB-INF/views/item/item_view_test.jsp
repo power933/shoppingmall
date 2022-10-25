@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script>
   $(function (){
+
+
     $("#buy_btn").click(function (){  //모바일용 구매하기 버튼
       if(confirm("비회원으로 구매진행 하시겠습니까")){   //세션달면 바꿀것
         frm.method="post";
@@ -34,19 +38,19 @@
 
   })
 </script>
-<input type="hidden" name="product_nm" value="아우라소파">
-<input type="hidden" name="product_dtc" value="천연가죽소파">
-<input type="hidden" name="price" id="price" value="7128000">
-<input type="hidden" name="point" id="point" value="71280">
+<input type="hidden" name="product_nm" value="${dto.pname}">
+<input type="hidden" name="product_dtc" value="${dto.psub_ex}">
+<input type="hidden" name="price" id="price" value="${dto.psale}">
+<input type="hidden" name="point" id="point" value="${dto.psale/100}">
 <input type="hidden" name="total" id="total" value="7128000">
 <div class="detail_title_area">
-  <h3 class="name">상품명</h3>
+  <h3 class="name">${dto.pname}</h3>
   <p class="summary">
-    상품상세설명
+    ${dto.psub_ex}
     <span class="detail_icons">
 		</span>
   </p>
-  <p class="seq_num Hide">상품번호 : 767</p>
+  <p class="seq_num Hide">상품번호 : ${dto.pcode}</p>
 </div>
 
 <div id="goods_view">
@@ -58,7 +62,7 @@
     <div id="goods_thumbs">
       <div class="slides_container hide" style="position:relative;">
         <div class="viewImgWrap">
-          <img src="" title="" alt="상품이미지"/>
+          <img src="${dto.pimg1}" title="" alt="상품이미지"/>
         </div>
       </div>
 
@@ -109,14 +113,18 @@
         <li class="deatil_price_area">
           <div class="deatil_sale_rate">
             <p class="inner">
-              <span class="num">20</span>%
+              <span class="num">${dto.ppercent}</span>%
             </p>
           </div>
           <p class="org_price">
-            <span class="dst_th_size"><s><span class="num">8,910,000</span></s>&#x20a9;</span>
+            <span class="dst_th_size"><s><span class="num">
+              <fmt:formatNumber value="${dto.pprice}" pattern="#,###"/>
+              </span></s>&#x20a9;</span>
           </p>
           <p class="sale_price">
-            <span class="num">7,128,000</span><span class='price_won'>&#x20a9;</span>
+            <span class="num">
+              <fmt:formatNumber value="${dto.psale}" pattern="#,###"/>
+              </span><span class='price_won'>&#x20a9;</span>
           </p>
 
           <!--<button type="button" class="btn_open_small btn_resp B" onclick="detail_contents_toggle(this,'priceDetail')"><span designElement="text">할인금액</span></button>//-->
@@ -153,7 +161,8 @@
             <li class="th"><span designElement="text" textIndex="44" >적립혜택</span></li>
             <li>
               <span designElement="text" textIndex="45" >구매</span>
-              71,280&#x20a9;
+
+             <fmt:formatNumber value="${dto.psale/100}" pattern="#,###"/>&#x20a9;
 
             </li>
           </ul>
@@ -340,7 +349,9 @@
               <!-- 단일옵션일 경우 수량 -->
               <td class="total_goods_price">
                 <span class="total_goods_tit" designElement="text">총 상품금액</span>
-                <span id="total_goods_price">7,128,000</span> &#x20a9;
+                <span id="total_goods_price">
+                  <fmt:formatNumber value="${dto.psale}" pattern="#,###"/>
+                </span> &#x20a9;
               </td>
             </tr>
           </table>
@@ -442,6 +453,7 @@
     </style>
     <div class="goods_description_images goods_view_contents">
       <!-- 상세설명 출력 부분 해당 부분에 상세정보 이미지가 추가 되어야 합니다.-->
+      ${dto.p_ex}
     </div>
   </div>
 

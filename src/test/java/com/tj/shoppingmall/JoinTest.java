@@ -20,10 +20,10 @@ public class JoinTest {
     @Test
     public void insertTest(){
         JoinRequestDTO joinRequestDTO = JoinRequestDTO.builder()
-                .mid("power933")
-                .mname("김창순")
-                .mpass("123")
-                .memail0("power933")
+                .mid("testid")
+                .mname("kcs")
+                .mpass("123123")
+                .memail0("power1152")
                 .memail1("naver.com")
                 .mtel0("010")
                 .mtel1("3325")
@@ -32,7 +32,7 @@ public class JoinTest {
                 .maddr("서울시 성북구 솔샘로")
                 .maddrdetail("이지명로 41-52 한샘디동 아파트 119동 1302호")
                 .build();
-        int a = joinService.updateMember(joinRequestDTO);
+        int a = joinService.insertMember(joinRequestDTO);
         System.out.println("a = " + a);
     }
 

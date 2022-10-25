@@ -14,8 +14,8 @@ public interface JoinMapper {
     public List<JoinDTO> getAll();
     @Insert("insert into members" +
             " values(#{mid},#{mpass},#{mname},#{memail}," +
-            "#{mtel},#{maddrnum},#{maddr},#{maddrdetail})")
-    public int memberUpdate(JoinDTO joinDTO);
+            "#{mtel},#{maddrnum},#{maddr},#{maddrdetail},#{indate})")
+    public int memberInsert(JoinDTO joinDTO);
 
     @Select("select * from members where mid = #{mid}")
     public JoinDTO findById(String mid);

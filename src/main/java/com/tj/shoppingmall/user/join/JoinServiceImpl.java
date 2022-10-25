@@ -10,10 +10,10 @@ import java.util.List;
 public class JoinServiceImpl implements JoinService{
     @Autowired
     JoinMapper joinMapper;
-    public int updateMember(JoinRequestDTO joinRequestDTO){
+    public int insertMember(JoinRequestDTO joinRequestDTO){
 
         JoinDTO joinDTO = requestDtoToDTo(joinRequestDTO);
-        return joinMapper.memberUpdate(joinDTO);
+        return joinMapper.memberInsert(joinDTO);
     }
     public List<JoinDTO> getAll(){
 
