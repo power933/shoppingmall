@@ -50,7 +50,8 @@
     <span class="detail_icons">
 		</span>
   </p>
-  <p class="seq_num Hide">상품번호 : ${dto.pcode}</p>
+  <input type = "hidden" id="pcode" value="${dto.pcode}">
+  <p class="seq_num Hide" >상품번호 : ${dto.pcode}</p>
 </div>
 
 <div id="goods_view">
@@ -316,7 +317,7 @@
                   <td colspan="2">
                     <span class="optionTitle hide">수량</span>
                     <select name="product_ea" id="product_ea">
-                      <option value="">- 수량 선택 -</option>
+                      <option value="0">- 수량 선택 -</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -568,3 +569,20 @@
   </div>
 
 </div>
+
+<script>
+  document.getElementById("buy_basket").addEventListener("click",ev => {
+    var product_ea = document.getElementById("product_ea").value;
+    if(product_ea==0) alert("상품 수량을 선택해주세요")
+    else{
+      if(confirm("장바구니에 담았습니다 장바구니로 이동하시겠습니까?")){
+      var pcode = document.getElementById("pcode").value;
+      location.href="cartinsert?pcode="+pcode+"&product_count="+product_ea+"&iscart=Y";
+    }
+      else{
+        var pcode = document.getElementById("pcode").innerHTML;
+        location.href="cartinsert?pcode="+pcode+"&product_count="+product_ea+"&iscart=N";
+      }
+    }
+  })
+</script>

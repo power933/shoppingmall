@@ -21,6 +21,8 @@ public class IndexController {
         String totalCate = cate.isPresent() ? cate.get():"0101";
         model.addAttribute("cate",indexService.getCategoryAll());
         model.addAttribute("items",indexService.getItemByCategory(totalCate));
+        model.addAttribute("recent",indexService.getItemOrderByIndate());
+        model.addAttribute("best",indexService.getItemOrderByPsales());
         return "index/index";
     }
 }

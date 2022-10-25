@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <meta charset="utf-8">
@@ -25,11 +26,26 @@
 			</h1>
 
             <!-- 상단 유틸메뉴 -->
+
             <ul class="util_wrap_menu2">
-                <li><a href="./login" designElement="text" textIndex="4" target="_self">로그인</a></li>
+				<c:choose>
+				<c:when test="${user ne null}" >
 				<li>
-					<a href="./join" designElement="text" textIndex="5" target="_self">회원가입</a>
+					<p href="./login" designElement="text" textIndex="4" target="_self">${user.mid}님</p>
 				</li>
+				<li>
+					<a href="./logout" designElement="text" textIndex="5" target="_self">로그아웃</a>
+				</li>
+				</c:when>
+				<c:otherwise>
+					<li>
+						<a href="./login" designElement="text" textIndex="4" target="_self">로그인</a>
+					</li>
+					<li>
+						<a href="./join" designElement="text" textIndex="5" target="_self">회원가입</a>
+					</li>
+				</c:otherwise>
+				</c:choose>
                 <!-- <li><a href="/service/cs" designElement="text">CS CENTER</a></li> -->
                 <li class="respCartArea"><a href="./cart"><em designElement="text" textIndex="6">CART</em></a></li>
 				<li class="respMypage"><a href="#" designElement="text" textIndex="7"><em>MY SHOPPING</em></a></li>

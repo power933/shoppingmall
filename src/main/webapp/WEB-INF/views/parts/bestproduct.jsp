@@ -14,7 +14,8 @@
 <div class="goods_display_slide_wrap">
 <div class="swiper-wrapper">
 
-<!--BEST Collection 상품 반복코드 -->   
+<!--BEST Collection 상품 반복코드 -->
+    <c:forEach var="best" items="${best}">
 <ul class="goods_list swiper-slide">	
 <li class="gl_item">
 <div class="gl_inner_item_wrap">
@@ -22,14 +23,14 @@
     <!--상품이미지-->
     <div class="gli_image goodsDisplayImageWrap">
         <a href="#" class="respItemImageArea">
-            <img src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010671170list1.jpg" data-src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010671170list1.jpg" class="goodsDisplayImage lazyload item1cut" onerror="this.src='./images/noimage.gif';" alt="[아쿠아릭] 헤네시 4인소파" />
-            <img src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010674579list1.jpg" data-src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010674579list1.jpg" class="goodsDisplayImage lazyload item2cut" onerror="this.src='./images/noimage.gif';" alt="[아쿠아릭] 헤네시 4인소파"  />
+            <img src="${best.pimg1}" data-src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010671170list1.jpg" class="goodsDisplayImage lazyload item1cut" onerror="this.src='./images/noimage.gif';" alt="[아쿠아릭] 헤네시 4인소파" />
+            <img src="${best.pimg2}" data-src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010674579list1.jpg" class="goodsDisplayImage lazyload item2cut" onerror="this.src='./images/noimage.gif';" alt="[아쿠아릭] 헤네시 4인소파"  />
         </a>
         <!-- 반응형 시작 -->
         <div class="respGoodsZzim">
             <a class="zzimArea">
-                <img src="./images/icon_zzim.png" class="zzimImage normal " alt="찜하기" title="찜하기" />
-                <img src="./images/icon_zzim_on.png" class="zzimImage active hide" alt="찜한 상품" title="찜한 상품" />
+                <img src="${best.pimg1}" class="zzimImage normal " alt="찜하기" title="찜하기" />
+                <img src="${best.pimg2}" class="zzimImage active hide" alt="찜한 상품" title="찜한 상품" />
             </a>
         </div>
         <!-- 반응형 끝 -->
@@ -37,27 +38,27 @@
 <div class="resp_display_goods_info infO_style_4">
     <!-- 상품명-->
     <div class="goodS_info displaY_goods_name">
-        <span class="areA"><a href="/goods/view?no=741">[아쿠아릭] 헤네시 4인소파</a></span>
+        <span class="areA"><a href="/item?pcode=${best.pcode}">${best.pname}</a></span>
     </div>
     <!-- 비회원 대체문구 -->
     <div class="infO_group">
         <!-- (할인혜택)판매가 -->
         <div class="goodS_info displaY_sales_price">
             <span class="areA">					
-                <span class="nuM">4,060,000</span>&#x20a9;
+                <span class="nuM"><fmt:formatNumber value="${best.psale}" pattern="#,###"/></span>&#x20a9;
             </span>
         </div>
     </div>
     <!-- 짧은 설명 -->
     <div class="goodS_info displaY_goods_short_desc">
-        <span class="areA">스페인직수입 스마트 아쿠아릭</span>
+        <span class="areA">${best.psub_ex}</span>
     </div>
 </div>
 </div>
 </li>
 </ul>
-<!--BEST Collection 상품 반복코드 끝 -->   
-
+<!--BEST Collection 상품 반복코드 끝 -->
+    </c:forEach>
 
 </div>
 <!-- scrollbar -->

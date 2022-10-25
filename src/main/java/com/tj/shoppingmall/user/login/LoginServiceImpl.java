@@ -18,8 +18,6 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public Boolean login(String mid,String mpass){
         Boolean result;
-
-
         result =selectById(mid)!=null &&
                 loginMapper.selectById(mid).getMid().equals(mid) &&
                 loginMapper.selectById(mid).getMpass().equals(SHA256(mpass)) ?

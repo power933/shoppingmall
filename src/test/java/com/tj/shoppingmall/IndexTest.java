@@ -25,4 +25,12 @@ public class IndexTest {
         List<ItemDTO> item = indexService.getItemByCategory("0102");
         System.out.println("item = " + item);
     }
+
+    @Test
+    public void getOrderBy(){
+        List<ItemDTO> item = indexService.getItemOrderByPsales();
+        List<ItemDTO> item2 = indexService.getItemOrderByIndate();
+        System.out.println(item2);
+        System.out.println(item);
+    }
 }

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 
 public class LoginController {
@@ -17,9 +20,24 @@ public class LoginController {
         return "login/member_login";
     }
     @PostMapping("/loginck")
-    public String login(String mid, String mpass){
+    public String login(String mid, String mpass, HttpServletRequest request){
 
-        return loginService.login(mid,mpass)?"index/index":"redirect:login/member_login";
+        if(loginService.login(mid,mpass)){
+            HttpSession session = request.getSession();
+            session.setAttribute("user",loginService.selectById(mid));
+            return "index/index";
+        }
+        else{
+            return "redirect:login";
+        }
+    }
 
+    @RequestMapping ("/logout")
+    public String logout(HttpServletRequest request){
+
+        HttpSession session = request.getSession(false);
+        session.invalidate();
+
+        return "index/index";
     }
 }

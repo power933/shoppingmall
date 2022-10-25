@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="title_container">
     <h2><span designElement="text" textIndex="1">장바구니</span></h2>
 </div>
@@ -32,13 +33,20 @@
                             </li>
                         </ul>
                     </li>
+                    <c:set var="totalPrice" value="0"/>
+                    <c:set var="totalSale" value="0"/>
+                    <c:set var="resultPrice" value="0"/>
+                    <c:forEach var="list" items="${list}">
+                        <c:set var="totalPrice" value="${totalPrice+list.pprice*list.product_count}"/>
+                        <c:set var="resultPrice" value="${resultPrice+list.psale*list.product_count}"/>
+
                     <li class="cart_goods" id="cart_goods_987">
                         <div class="cart_goods_detail">
                             <div class="cgd_top">
                                 <label>
                                     <input type="hidden" name="ship_possible[987]" value="Y"/>
                                     <input type="checkbox" name="cart_option_seq[]" value="987" stat="Y" rel="775" />
-                                    <span class="goods_name">예시 소파 상품명</span>
+                                    <span class="goods_name">${list.pname}</span>
                                 </label>
                             </div>
 
@@ -46,31 +54,32 @@
                                 <div class="block block1">
                                     <ul>
                                         <li class="img_area">
-                                            <a href=""><img src="./product/27921_temp_16329010671170list1.jpg" class="goods_thumb"></a>
+                                            <a href=""><img src="${list.pimg1}" class="goods_thumb"></a>
                                         </li>
                                         <li class="option_area">
 
                                             <ul class="cart_option">
-                                                <li><span class="xtle">구성</span> 거실장 1SET</li>
+                                                <li><span class="xtle">구성</span> ${list.psub_ex}</li>
                                             </ul>
-                                            <div class="cart_quantity"><span class="xtle">수량</span> 1개 <span class="add_txt">(1,790,000&#x20a9;)</span></div>
+                                            <div class="cart_quantity"><span class="xtle">수량</span> ${list.product_count}개 <span class="add_txt">(<fmt:formatNumber value="${list.pprice*list.product_count}" pattern="#,###"/>&#x20a9;)</span></div>
                                         </li>
                                     </ul>
                                 </div>
 
                                 <ul class="block block2" id="mobile_cart_sale_tr_987">
                                     <li class="price_a">
-                                        <span class="ptitle">상품금액</span> 1,790,000&#x20a9;
+                                        <span class="ptitle">상품금액</span>
+                                        <fmt:formatNumber value="${list.pprice*list.product_count}" pattern="#,###"/>&#x20a9;
                                     </li>
                                     <li class="price_b">
                                         <span class="ptitle">
                                             할인금액
                                         </span>
-                                        (-) <span id="mobile_cart_sale_987">358,000&#x20a9;</span>
+                                        (-) <span id="mobile_cart_sale_987"><fmt:formatNumber value="${(list.pprice-list.psale)*list.product_count}" pattern="#,###"/>&#x20a9;</span>
                                     </li>
                                     <li class="price_c">
                                         <span class="ptitle">할인적용금액</span>
-                                        <span class="total_p" id="option_suboption_price_sum_987"><span class="num">1,432,000</span>&#x20a9;</span>
+                                        <span class="total_p" id="option_suboption_price_sum_987"><span class="num"><fmt:formatNumber value="${list.psale*list.product_count}" pattern="#,###"/></span>&#x20a9;</span>
                                     </li>
                                 </ul>
 
@@ -82,6 +91,7 @@
                             </div>
                         </div>
                     </li>
+                    </c:forEach>
                 </ul>
             </div>
         </div>
@@ -106,7 +116,7 @@
         <div class="total_sum_price">
             <ul class="list list1">
                 <li class="th">총 상품금액</li>
-                <li class="td"><span class="sum_price"><span class="num">1,790,000</span>&#x20a9;</span></li>
+                <li class="td"><span class="sum_price"><span class="num"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/></span>&#x20a9;</span></li>
             </ul>
             <ul class="list list2">
                 <li class="th">총 배송비</li>
@@ -114,12 +124,12 @@
             </ul>
             <ul class="list list3">
                 <li class="th">총 할인</li>
-                <li class="td"><span class="sum_price">(-) <span>358,000&#x20a9;</span></span></li>
+                <li class="td"><span class="sum_price">(-) <span><fmt:formatNumber value="${totalPrice-resultPrice}" pattern="#,###"/>&#x20a9;</span></span></li>
             </ul>
             <ul class="list list4 total">
                 <li class="th">총 결제금액</li>
                 <li class="td"><span class="sum_price settle_price">
-                        <span class="num">1,432,000</span>&#x20a9;</span>
+                        <span class="num"><fmt:formatNumber value="${resultPrice}" pattern="#,###"/></span>&#x20a9;</span>
                 </li>
             </ul>
         </div>

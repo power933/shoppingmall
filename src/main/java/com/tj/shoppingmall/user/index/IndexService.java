@@ -7,4 +7,6 @@ import java.util.List;
 public interface IndexService {
     List<IndexCategoryDTO> getCategoryAll();
     List<ItemDTO> getItemByCategory(String totalCate);
+    public List<ItemDTO> getItemOrderByIndate();
+    public List<ItemDTO> getItemOrderByPsales();
 }

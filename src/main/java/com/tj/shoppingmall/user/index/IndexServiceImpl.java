@@ -16,6 +16,15 @@ public class IndexServiceImpl implements IndexService {
     public List<IndexCategoryDTO> getCategoryAll(){
         return indexMapper.getCategoryAll();
     }
+    @Override
+    public List<ItemDTO> getItemOrderByIndate(){
+        return indexMapper.getProductOrderByIndate();
+    }
+
+    @Override
+    public List<ItemDTO> getItemOrderByPsales(){
+        return indexMapper.getProductOrderByPsales();
+    }
 
     @Override
     public List<ItemDTO> getItemByCategory(String totalCate) {

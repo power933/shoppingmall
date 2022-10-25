@@ -20,10 +20,10 @@ public class JoinTest {
     @Test
     public void insertTest(){
         JoinRequestDTO joinRequestDTO = JoinRequestDTO.builder()
-                .mid("testid")
+                .mid("test")
                 .mname("kcs")
-                .mpass("123123")
-                .memail0("power1152")
+                .mpass("123")
+                .memail0("oval1124")
                 .memail1("naver.com")
                 .mtel0("010")
                 .mtel1("3325")

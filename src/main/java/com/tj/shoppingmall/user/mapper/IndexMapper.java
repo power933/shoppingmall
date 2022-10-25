@@ -17,6 +17,9 @@ public interface IndexMapper {
             "and psmall_cate=#{psmall_cate} limit 16")
     List<ItemDTO> getItemByCategory(String plarge_cate, String psmall_cate);
 
-    /*@Select("select * from product order by ")
-    List<ItemDTO> getItemByCategory(String plarge_cate, String psmall_cate);*/
+    @Select("select * from product order by psales desc limit 4")
+    List<ItemDTO> getProductOrderByPsales();
+
+    @Select("select * from product order by indate desc limit 4")
+    List<ItemDTO> getProductOrderByIndate();
 }
