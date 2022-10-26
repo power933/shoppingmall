@@ -11,7 +11,7 @@
             <!-- 전체 선택 -->
             <ul class="cart_contents_top clearbox">
                 <li class="aa">
-                    <label class="checkbox_allselect"><input type="checkbox" class="btn_select_all" /> <span class="txt">전체선택</span></label>
+                    <label class="checkbox_allselect"><input type="checkbox" class="btn_select_all" id="select_all" /> <span class="txt">전체선택</span></label>
                 </li>
                 <li class="bb hide">
                     <input type="button" class="btn_resp size_b btn_shipping_modify" value="배송변경" />
@@ -25,7 +25,7 @@
                             <li class="th">배송 :</li>
                             <li class="silmul">
                                 <span>직접배송</span>
-
+                                <input type="hidden" class="size" value="${size}">
                                 <span id="price_">무료</span>
 
                                 <div class="hope">
@@ -33,10 +33,12 @@
                             </li>
                         </ul>
                     </li>
+
+                    <form method="post" action="cartdelete" name="f">
                     <c:set var="totalPrice" value="0"/>
                     <c:set var="totalSale" value="0"/>
                     <c:set var="resultPrice" value="0"/>
-                    <c:forEach var="list" items="${list}">
+                    <c:forEach var="list" items="${list}" varStatus="status">
                         <c:set var="totalPrice" value="${totalPrice+list.pprice*list.product_count}"/>
                         <c:set var="resultPrice" value="${resultPrice+list.psale*list.product_count}"/>
 
@@ -45,7 +47,8 @@
                             <div class="cgd_top">
                                 <label>
                                     <input type="hidden" name="ship_possible[987]" value="Y"/>
-                                    <input type="checkbox" name="cart_option_seq[]" value="987" stat="Y" rel="775" />
+                                    <input type="checkbox" class="checkSelect" data="${list.pprice*list.product_count}"  name="cart_option_seq[]" id="select${status.count}" value="${list.cartId}" stat="Y" rel="775" />
+                                    <input type="hidden" id="hidden${list.cartId}" value="${list.cartId}">
                                     <span class="goods_name">${list.pname}</span>
                                 </label>
                             </div>
@@ -67,20 +70,24 @@
                                 </div>
 
                                 <ul class="block block2" id="mobile_cart_sale_tr_987">
-                                    <li class="price_a">
+                                    <li class="price_a" name="viewPrice">
                                         <span class="ptitle">상품금액</span>
                                         <fmt:formatNumber value="${list.pprice*list.product_count}" pattern="#,###"/>&#x20a9;
+                                        <input type="hidden" class="hiddenPrice" value="${list.pprice*list.product_count}">
                                     </li>
                                     <li class="price_b">
-                                        <span class="ptitle">
+                                        <span class="ptitle" name="viewPrice">
                                             할인금액
                                         </span>
                                         (-) <span id="mobile_cart_sale_987"><fmt:formatNumber value="${(list.pprice-list.psale)*list.product_count}" pattern="#,###"/>&#x20a9;</span>
+                                        <input type="hidden" class="hiddenSale" value="${(list.pprice-list.psale)*list.product_count}">
                                     </li>
-                                    <li class="price_c">
+                                    <li class="price_c" name="viewPrice">
                                         <span class="ptitle">할인적용금액</span>
                                         <span class="total_p" id="option_suboption_price_sum_987"><span class="num"><fmt:formatNumber value="${list.psale*list.product_count}" pattern="#,###"/></span>&#x20a9;</span>
+                                        <input type="hidden" class="hiddenResult" value="${list.psale*list.product_count}">
                                     </li>
+                                    <input type="hidden" name="cartId" value="{list.cartId}">
                                 </ul>
 
                                 <ul class="block block3">
@@ -92,6 +99,7 @@
                         </div>
                     </li>
                     </c:forEach>
+                    </form>
                 </ul>
             </div>
         </div>
@@ -102,7 +110,7 @@
 
             <div class="btns">
                 <button type="button" class="btn_resp size_b color2 btn_selected_order">선택상품 주문하기</button>
-                <button type="button" class="btn_resp size_b gray_05 btn_select_del">선택상품 삭제</button>
+                <button type="button" class="btn_resp size_b gray_05 btn_select_del" id="deletebtn">선택상품 삭제</button>
             </div>
         </div>
     </li>
@@ -116,7 +124,7 @@
         <div class="total_sum_price">
             <ul class="list list1">
                 <li class="th">총 상품금액</li>
-                <li class="td"><span class="sum_price"><span class="num"><fmt:formatNumber value="${totalPrice}" pattern="#,###"/></span>&#x20a9;</span></li>
+                <li class="td"><span class="sum_price"><span class="num"></span>&#x20a9;</span></li>
             </ul>
             <ul class="list list2">
                 <li class="th">총 배송비</li>
@@ -124,12 +132,13 @@
             </ul>
             <ul class="list list3">
                 <li class="th">총 할인</li>
-                <li class="td"><span class="sum_price">(-) <span><fmt:formatNumber value="${totalPrice-resultPrice}" pattern="#,###"/>&#x20a9;</span></span></li>
+                <li class="td"><span class="sum_price">(-) <span>0&#x20a9;</span></span></li>
             </ul>
             <ul class="list list4 total">
                 <li class="th">총 결제금액</li>
                 <li class="td"><span class="sum_price settle_price">
-                        <span class="num"><fmt:formatNumber value="${resultPrice}" pattern="#,###"/></span>&#x20a9;</span>
+                    <span class="num"><span id="totalmoney">0&#x20a9;</span></span>
+                    <input type="hidden" id="sumtotal" value="0">
                 </li>
             </ul>
         </div>
@@ -146,3 +155,82 @@
 </ul>
 <div class="total_price_n_btns">
 </div>
+
+
+
+<script>
+
+    $(document).ready(function() {
+    var size = $(".size").val();
+        $(".btn_select_all").click(function() {
+            if($(".btn_select_all").is(":checked")){
+                $(".checkSelect").prop("checked", true);
+            } else {
+                $(".checkSelect").prop("checked", false);
+            };
+
+        });
+
+        $(".checkSelect").click(function() {
+            var total = $(".checkSelect").length;
+            var checked = $(".checkSelect:checked").length;
+
+            var money = $(this).attr("data");
+            var sumtotal = $("#sumtotal").val();
+            var plusmoney = Number(money) + Number(sumtotal);
+            var minusmony = Number(sumtotal) - Number(money);
+
+            if($(".checkSelect").is(":checked")){
+                $("#sumtotal").val(plusmoney);
+                $("#totalmoney").html(plusmoney.toLocaleString()+"&#x20a9;");
+            }
+
+            if(!$(".checkSelect").is(":checked")){
+                $("#sumtotal").val(minusmony);
+                $("#totalmoney").html(minusmony.toLocaleString()+"&#x20a9;");
+            }
+
+            if(total != checked){
+                $(".btn_select_all").prop("checked", false);
+            }
+            else{
+                $(".btn_select_all").prop("checked", true);
+            }
+        });
+
+
+
+    });
+    /*var ckbox = document.getElementById("select"+i+1);
+    $("")*/
+
+    /*
+    function priceset(){
+        var result = 0;
+        var sale = 0;
+        var price = 0;
+        $("#mobile_cart_sale_tr_987").each(function(index, element){
+           // if($(element).find(".checkSelect").is(":checked") === true){
+            result += parseInt($(element).find(".hiddenResult").val());
+            sale += parseInt($(element).find(".hiddenSale").val());
+            price += parseInt($(element).find(".hiddenPrice").val());
+            console.log(price);
+            console.log(sale);
+            // }
+
+        });
+    }
+    //id : mobile_cart_sale_tr_987  name="viewPrice" deletebtn
+    $(".checkSelect").on("change", function(){
+
+        priceset($("#mobile_cart_sale_tr_987"));
+    });
+*/
+
+
+
+    document.getElementById("deletebtn").addEventListener("click", ev => {
+       f.submit();
+    });
+
+</script>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class NoticeController {
 
     @Autowired
-    NoticeDAO noticeDAO;
+    NoticeService noticeService;
 
     @RequestMapping("notice")
     public String notice(@RequestParam(defaultValue = "1") Integer page,
@@ -26,6 +26,8 @@ public class NoticeController {
         al = option.equals("W")&&search.equals("") ? noticeDAO.selectNotice(spage,pagesize) : noticeDAO.searchNotice(spage, pagesize, option, search);*/
 
 //		dn.updatecnt(page);
+
+
 
 
         return "notice/notice";

@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -23,5 +25,14 @@ public class CartTest {
     public void CartSelect(){
         List<CartProductDTO> list = cartService.getCartList("testid");
         System.out.println("list = " + list);
+    }
+
+    @Test
+    public void cartDelete(){
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(5);
+
+        System.out.println("list = " + cartService.deleteCart(list));
     }
 }
