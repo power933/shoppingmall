@@ -9,3 +9,7 @@
 2.컨트롤러에서 찍는 뷰 다시 확인.
 
 pw안쓰고 원하는 url 컨트롤러에서 바로 찍기?
+
+1028
+ Cannot render error page for request [/cart] and exception [For input string: "memail"] as the response has already been committed. As a result, the response may have the wrong status code.
+ 뜬금없어서 memail중복 찾고 있었는데 백에서 리스트로 던져놓고 jsp에서 리스트 인덱스 지정안하고 찍으면 나옴
