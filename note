@@ -1,7 +1,7 @@
 1023
 파라미터 DTO로 받을라는데
 디비 엔티티와 받아야하는 파라미터가 동일하지 않음(번호,이메일 나눠져있음)
-이걸 리퀘스트 디티오 하나 더 만들어서 컨트롤단에서 처리?
+이걸 리퀘스트 디티오 하나 더 만들어서 컨트롤단에서 처리? - 한두개면 그냥 빌더로 세팅하는게 나은듯
 
 1025
 세션삭제 안됨?
@@ -11,5 +11,9 @@
 pw안쓰고 원하는 url 컨트롤러에서 바로 찍기?
 
 1028
- Cannot render error page for request [/cart] and exception [For input string: "memail"] as the response has already been committed. As a result, the response may have the wrong status code.
- 뜬금없어서 memail중복 찾고 있었는데 백에서 리스트로 던져놓고 jsp에서 리스트 인덱스 지정안하고 찍으면 나옴
+ 1.Cannot render error page for request [/cart] and exception [For input string: "memail"] as the response has already been committed. As a result, the response may have the wrong status code.
+ 뜬금없어서 memail중복 찾고 있었는데 뒤에서 리스트로 던져놓고 jsp에서 리스트 인덱스 지정안하고 찍으면 나옴
+2.게시판 작성시 limit opset에 pageea곱하는거 깜빡하지좀 말자...
+3. @Build.Default로 기본값 잡아줬을시 builder 호출할때마다 따로 지정안한값들은 죄다 
+default값으로 들어감. 짜잘하게 한두개 수정할게 생길거같다싶으면 빌더에 디폴트 잡는건 생각좀 해볼것
+
