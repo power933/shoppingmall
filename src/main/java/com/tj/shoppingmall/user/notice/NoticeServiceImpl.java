@@ -13,12 +13,20 @@ public class NoticeServiceImpl implements  NoticeService{
     NoticeMapper noticeMapper;
 
     @Override
-    public List<NoticeDTO> getAllSearch(int startPage, int pageEa, String searchWord) {
-        return noticeMapper.getAllSearch(startPage,pageEa,searchWord);
+    public List<NoticeDTO> getSearch(NoticeRequestDTO noticeRequestDTO) {
+        NoticeRequestDTO dto = settingDTO(noticeRequestDTO);
+
+        return noticeRequestDTO.getSearchType().equals("w")?
+                noticeMapper.getAllSearch(dto)
+                :  noticeMapper.getTypeSearch(dto);
     }
 
-    @Override
-    public List<NoticeDTO> getTypeSearch(int startPage, int pageEa, String searchWord, String searchType) {
-        return noticeMapper.getTypeSearch(startPage,pageEa,searchWord,searchType);
+    public int getSize(NoticeRequestDTO noticeRequestDTO){
+        NoticeRequestDTO dto = settingDTO(noticeRequestDTO);
+        return noticeRequestDTO.getSearchType().equals("y")?
+                noticeMapper.getYSize(dto)
+                :  noticeMapper.getSize(dto);
     }
+
+
 }

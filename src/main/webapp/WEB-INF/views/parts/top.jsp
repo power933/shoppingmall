@@ -94,6 +94,7 @@
 
 
 	<!-- +++++++++++ 카테고리 메뉴( 카테고리 메뉴를 미노출 하실 분은 style="display:none;" 처리 하세요. ex) id="cateSwiper" class="nav_wrap" style="display:none;" ) +++++++++++ -->
+<%--<c:forEach var="cate" items="${cate}"></c:forEach>--%>
 	<div id="cateSwiper" class="nav_wrap">
 		<div class="resp_wrap">
 			<div class="nav_category_area">
@@ -210,7 +211,8 @@
                                     <!-- //카테고리 네비게이션 -->
                                 </ul>
                             </div>
-						</li>				
+						</li>
+
                         <!--
                         <li class="custom_nav_link">
 							<a class="categoryDepthLink" designElement="text" href="/goods/best" target="_self"><em>Best</em></a>

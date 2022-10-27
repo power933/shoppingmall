@@ -21,4 +21,6 @@ public class CartProductDTO {
     private String pimg1;
     private Integer psales;
     private Integer cartId;
+    private String plarge_cate;
+    private String psmall_cate;
 }

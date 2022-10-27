@@ -19,9 +19,15 @@ public class CartServiceImpl implements CartService{
 
     @Override
     public List<CartProductDTO> getCartList(String mid){
+
         return cartMapper.getCartList(mid);
     }
+    @Override
+    public List<CartResponseDTO> getMemberList(String mid){
 
+        List<CartResponseDTO> cartResponseDTO = getToResponse(cartMapper.getMemberList(mid));
+        return cartResponseDTO;
+    }
     @Override
     public Boolean deleteCart(List<Integer> cartId) {
 

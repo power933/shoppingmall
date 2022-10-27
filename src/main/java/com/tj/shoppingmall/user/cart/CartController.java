@@ -30,6 +30,7 @@ public class CartController {
          list = cartService.getCartList(mid);
         model.addAttribute("list", list);
         model.addAttribute("size",list.size());
+        model.addAttribute("member",cartService.getMemberList(mid));
 
         return "cart/ordercart";
     }

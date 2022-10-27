@@ -16,4 +16,5 @@ public class NoticeDTO {
     private String ncontent;
     private String ncount;
     private String ndate;
+
 }
