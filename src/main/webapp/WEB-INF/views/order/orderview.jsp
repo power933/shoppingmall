@@ -1,27 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
   $(function (){  //약관동의 전체 체크
     $("#all_agree").click(function (){
      var ck = $(this).is(":checked");
+     var allck;
      if(ck==true){
        allck = true;
      }
      else{
        allck = false;
      }
-     ${".agree_chk"}.prop("checked",allck);
+     $(".agree_chk").prop("checked",allck);
+
     });
-  });
 
-
-  $(function() {
+    console.log(1);
     $("#search_post").postcodifyPopUp({
     insertPostcode5 : "#person_post",
     insertAddress : "#person_addr",
     hideOldAddresses : false
-  });
-  });
+    });
+    console.log(3);
 
   $("#payinfo").click(function (){ //주문자 정보와 동일
     $("#person_nm").val($("#cname").val());
@@ -33,10 +34,86 @@
     $("#person_phone3").val($("#ctel3").val());
 
   });
-
+  });
 </script>
 
-<form name="orderFrm" id=""orderFrm method="post">
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
+<script>
+  function gopayment (){
+  var mname = document.getElementById("mname").value;
+  var mtel = document.getElementById("mtel").value;
+  var memail = document.getElementById("memail").value;
+  var maddr = document.getElementById("maddr").value;
+  function paymentOne(a) {
+
+    var price2 = document.getElementById("price"+a).value;
+    var pname = document.getElementById("pname"+a).value;
+    var scate = document.getElementById("scate"+a).value;
+    var lcate = document.getElementById("lcate"+a).value;
+    var count = document.getElementById("count"+a).value;
+
+    BootPay.request({
+      price: price2,
+      application_id: "635a96d6cf9f6d001d374108",
+      name: pname,
+      pg: 'inicis',
+      method: '',
+      show_agree_window: 0,
+      items: [
+        {
+          item_name: pname,
+          qty: count,
+          unique: '123',
+          price: price2,
+          cat1: lcate,
+          cat2: scate,
+        }
+      ],
+      user_info: {
+        username: mname,
+        email: memail,
+        addr: maddr,
+        phone: mtel
+      },
+      order_id: '고유order_id_1234',
+      params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
+      account_expire_at: '2020-10-25',
+      extra: {
+        start_at: '',
+        end_at: '',
+        vbank_result: 1,
+        quota: '0,2,3',
+        theme: 'purple',
+        custom_background: '#00a086',
+        custom_font_color: '#ffffff'
+      }
+    }).error(function (data) {
+
+      console.log(data);
+    }).cancel(function (data) {
+
+      console.log(data);
+    }).ready(function (data) {
+
+      console.log(data);
+    }).confirm(function (data) {
+      console.log(data);
+      var enable = true;
+      if (enable) {
+        BootPay.transactionConfirm(data);
+      } else {
+        BootPay.removePaymentWindow();
+      }
+    }).close(function (data) {
+      console.log(data);
+    }).done(function (data) {
+      console.log(data);
+    });
+  }
+  }
+</script>
+
+<form name="orderFrm" id="orderFrm" method="post">
   <input type="hidden" name="version" value="1.0">
   <input type="hidden" name="mid">
   <input type="hidden" name="old">
@@ -94,10 +171,17 @@
       <div class="subpage_container v2 Pt0 order_payment_left">
         <!-- 주문상품 :: START -->
         <h2 class="title_od1 Pt15"><span designElement="text" textIndex="2"   >주문상품 정보</span></h2>
+
+        <div id="facebook_mgs"><div style="padding:10px"></div></div>
+
         <div class="cart_contents">
+
+
           <div class="cart_list">
             <ul class="shipping_group_list ">
+
               <li class="goods_delivery_info clearbox">
+
                 <ul class="detail">
                   <li class="th">배송 :</li>
                   <li class="silmul">
@@ -115,7 +199,14 @@
                   </li>
                 </ul>
               </li>
+              <c:set var="totalprice" value="0"/>
+              <c:set var="totalsale" value="0"/>
+              <c:set var="totalresult" value="0"/>
 
+              <c:forEach var="list" items="${list}">
+              <c:set var="totalprice" value="${totalprice+list.pprice}"/>
+              <c:set var="totalsale" value="${totalsale+list.pprice-list.psale}"/>
+              <c:set var="totalresult" value="${totalresult+list.psale}"/>
               <li class="cart_goods">
                 <div class="cart_goods_detail">
 
@@ -123,13 +214,13 @@
                     <div class="block block1">
                       <ul>
                         <li class="img_area">
-                          <a href="#"><img src="./product/767_2022051214434020.jpg" title="" alt="상품이미지" /></a>
+                          <a href="#"><img src="${list.pimg1}" title="" alt="상품이미지" /></a>
                         </li>
                         <li class="option_area">
 
 
                           <div class="goods_name v2">
-                            <a href="">아우라 천연가죽 4인소파</a>
+                            <a href="">${list.pname}</a>
                           </div>
 
 
@@ -138,8 +229,8 @@
                           </ul>
 
                           <div class="cart_quantity">
-                            <span class="xtle">수량</span> 1개
-                            <span class="add_txt">(<span class="cart_price_num">8,910,000</span>&#x20a9;)</span>
+                            <span class="xtle">수량</span> ${count}개
+                            <span class="add_txt">(<span class="cart_price_num"><fmt:formatNumber pattern="#,###" value="${list.pprice}"/></span>&#x20a9;)</span>
                           </div>
 
 
@@ -149,27 +240,29 @@
 
                     <ul class="block block2 x1" id="mobile_cart_sale_tr_989">
                       <li class="price_a">
-                        <span class="ptitle">상품금액</span> 8,910,000&#x20a9;
+                        <span class="ptitle">상품금액</span><fmt:formatNumber pattern="#,###" value="${list.pprice*count}"/>&#x20a9;
                       </li>
                       <li id="cart_sale_tr_989" class="price_b">
                         <span class="ptitle">할인금액</span>
                         <div id="cart_option_sale_total_989">
-                          -
+                          <fmt:formatNumber pattern="#,###" value="${(list.pprice-list.psale)*count}"/>
                         </div>
                       </li>
                       <li class="price_c">
                         <span class="ptitle">할인적용금액</span>
-                        <span class="total_p"><span id="option_suboption_price_sum_989">8,910,000</span>&#x20a9;</span>
+                        <span class="total_p"><span id="option_suboption_price_sum_989"><fmt:formatNumber pattern="#,###" value="${list.psale*count}"/></span>&#x20a9;</span>
                       </li>
                     </ul>
                   </div>
                 </div>
+                </c:forEach>
               </li>
-            </ul>
-          </div>
-        </div>
 
-        <div id="facebook_mgs"><div style="padding:10px"></div></div>
+            </ul>
+
+          </div>
+
+        </div>
 
 
         <div class="order_subsection v2">
@@ -179,7 +272,7 @@
           <div id="order_info_input" class="">
             <div class="order_info_input">
               <ul class="list_01 v2">
-                <li><input type="text" name="cname" value="" class="pilsu" style="width:170px;" title="주문자 이름" placeholder="주문자 이름" required />
+                <li><input type="text" name="cname" id="cname" value="" class="pilsu" style="width:170px;" title="주문자 이름" placeholder="주문자 이름" required />
                 <li>
                   <input type="tel" name="chp1" id="chp1" value="" class="pilsu" style="width:64px;" title="휴대폰" placeholder="휴대폰" required /> -
                   <input type="tel" name="chp2" id="chp2" value="" class="pilsu size_phone" placeholder="휴대폰" required /> -
@@ -234,7 +327,7 @@
                 </li>
                 <!-- 이메일 -->
                 <li class="hide">
-                  <input type="email" name="recipient_email" value="" class="size_email_full" title="이메일" />
+                  <input type="email" name="recipient_email" id="recipient_email" value="" class="size_email_full" title="이메일" />
                 </li>
               </ul>
             </div>
@@ -256,7 +349,7 @@
                 <div class="order_price_total">
                   <ul>
                     <li class="th"><span class="gray_01 Fs17" designElement="text" textIndex="7"   >상품금액</span></li>
-                    <li class="td"><span id="total_goods_price" class="v2 gray_01">8,910,000</span>&#x20a9;</li>
+                    <li class="td"><span id="total_goods_price" class="v2 gray_01"><fmt:formatNumber value="${totalprice}" pattern="#,###"/></span>&#x20a9;</li>
                   </ul>
                   <ul>
                     <li class="th">
@@ -274,13 +367,13 @@
                     </li>
                     <li class="td pointcolor3">
                       <span>(-)</span>
-                      <span class="total_sales_price">0</span>&#x20a9;
+                      <span class="total_sales_price"><fmt:formatNumber value="${totalsale}" pattern="#,###"/></span>&#x20a9;
                     </li>
                   </ul>
                   <ul class="total">
                     <li class="th"><span designElement="text" textIndex="14"   >최종 결제금액</span></li>
                     <li class="td">
-                      <span class="price"><span class="settle_price">8,910,000</span>&#x20a9;</span>
+                      <span class="price"><span class="settle_price"><fmt:formatNumber value="${totalresult}" pattern="#,###"/></span>&#x20a9;</span>
                     </li>
                   </ul>
                 </div>
@@ -460,4 +553,13 @@
         }
       });
     });
+
+    $("#pay").click(function (){
+      if($(".pilsu").val() == ""){ alert("필수정보를 입력해주세요");}
+      else if(!($(".agree_chk").is(":checked"))){alert("필수 동의항목을 모두 체크해 주세요");}
+      else{
+
+      }
+    })
+
   </script>

@@ -34,7 +34,7 @@
 					<p href="./login" designElement="text" textIndex="4" target="_self">${user.mid}님</p>
 				</li>
 				<li>
-					<a href="./logout" designElement="text" textIndex="5" target="_self">로그아웃</a>
+					<a href="./logout" class="islogin" designElement="text" textIndex="5" target="_self">로그아웃</a>
 				</li>
 				</c:when>
 				<c:otherwise>
@@ -42,7 +42,7 @@
 						<a href="./login" designElement="text" textIndex="4" target="_self">로그인</a>
 					</li>
 					<li>
-						<a href="./join" designElement="text" textIndex="5" target="_self">회원가입</a>
+						<a href="./join" class="islogin" designElement="text" textIndex="5" target="_self">회원가입</a>
 					</li>
 				</c:otherwise>
 				</c:choose>

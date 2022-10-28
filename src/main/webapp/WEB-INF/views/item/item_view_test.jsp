@@ -7,17 +7,34 @@
 
 
     $("#buy_btn").click(function (){  //모바일용 구매하기 버튼
+
       if(confirm("비회원으로 구매진행 하시겠습니까")){   //세션달면 바꿀것
         frm.method="post";
         frm.action="order"
         frm.submit();
       }
+
     });
-    $("#buy_btn2").click(function (){ //pc용 구매하기버튼
-      if(confirm("비회원으로 구매진행 하시겠습니까")){   //세션달면 바꿀것
-        frm.method="post";
-        frm.action="order"
+    $(".btn_resp").click(function (){ //pc용 구매하기버튼
+      var product_ea = document.getElementById("product_ea").value;
+      if(product_ea==0) {
+        alert("상품 수량을 선택해주세요");
+      }
+      else{
+      if($(".islogin").text()=='회원가입') {
+        if (confirm("비회원으로 구매진행 하시겠습니까")) {   //세션달면 바꿀것
+          frm.action = "order"
+          frm.submit();
+        }
+        else{
+          location.href="/login";
+        }
+      }
+      else{
+        frm.method = "post";
+        frm.action = "order"
         frm.submit();
+      }
       }
     });
 
@@ -50,7 +67,7 @@
     <span class="detail_icons">
 		</span>
   </p>
-  <input type = "hidden" id="pcode" value="${dto.pcode}">
+  <input type = "hidden" name="pcode" id="pcode" value="${dto.pcode}">
   <p class="seq_num Hide" >상품번호 : ${dto.pcode}</p>
 </div>
 
@@ -351,7 +368,7 @@
               <td class="total_goods_price">
                 <span class="total_goods_tit" designElement="text">총 상품금액</span>
                 <span id="total_goods_price">
-                  <fmt:formatNumber value="${dto.psale}" pattern="#,###"/>
+                  0
                 </span> &#x20a9;
               </td>
             </tr>
