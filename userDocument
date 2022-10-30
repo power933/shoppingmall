@@ -41,7 +41,24 @@ create table cart(
     foreign key (pcode) references product(pcode)
 );
 
-
+상품 주문 테이블
+create table orderlist(
+ordernum varchar(50) not null primary key,
+mid char(30) not null,
+mname varchar(20) not null,
+mhp varchar(15),
+mtel varchar(15) not null,
+memail varchar(30) not null,
+uname varchar(20) not null,
+uaddr varchar(200) not null,
+uhp varchar(15),
+utel varchar(15) not null,
+umsg varchar(200),
+pprice int not null,
+pcode varchar(10) not null,
+product_count int not null,
+date datetime not null default '0001-00-00 01:01:01'
+);
 
 
 
