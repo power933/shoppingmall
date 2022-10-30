@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
   $(function (){  //약관동의 전체 체크
     $("#all_agree").click(function (){
@@ -16,13 +19,24 @@
 
     });
 
-    console.log(1);
-    $("#search_post").postcodifyPopUp({
-    insertPostcode5 : "#person_post",
-    insertAddress : "#person_addr",
-    hideOldAddresses : false
+    /*$("#search_post").postcodifyPopUp({
+      insertPostcode5 : "#person_post",
+      insertAddress : "#person_addr",
+      hideOldAddresses : false
+    });*/
+
+    document.getElementById("search_post").addEventListener("click", function(){
+
+      new daum.Postcode({
+        oncomplete: function(data) { //선택시 입력값 세팅
+          document.getElementById("person_post").value=data.zonecode;
+          document.getElementById("person_addr").value = data.address;
+          document.getElementById("person_addrtc").focus();
+
+        }
+      }).open();
     });
-    console.log(3);
+
 
   $("#payinfo").click(function (){ //주문자 정보와 동일
     $("#person_nm").val($("#cname").val());
@@ -36,98 +50,6 @@
   });
   });
 </script>
-
-<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.3.min.js" type="application/javascript"></script>
-<script>
-  function gopayment (){
-  var mname = document.getElementById("mname").value;
-  var mtel = document.getElementById("mtel").value;
-  var memail = document.getElementById("memail").value;
-  var maddr = document.getElementById("maddr").value;
-  function paymentOne(a) {
-
-    var price2 = document.getElementById("price"+a).value;
-    var pname = document.getElementById("pname"+a).value;
-    var scate = document.getElementById("scate"+a).value;
-    var lcate = document.getElementById("lcate"+a).value;
-    var count = document.getElementById("count"+a).value;
-
-    BootPay.request({
-      price: price2,
-      application_id: "635a96d6cf9f6d001d374108",
-      name: pname,
-      pg: 'inicis',
-      method: '',
-      show_agree_window: 0,
-      items: [
-        {
-          item_name: pname,
-          qty: count,
-          unique: '123',
-          price: price2,
-          cat1: lcate,
-          cat2: scate,
-        }
-      ],
-      user_info: {
-        username: mname,
-        email: memail,
-        addr: maddr,
-        phone: mtel
-      },
-      order_id: '고유order_id_1234',
-      params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
-      account_expire_at: '2020-10-25',
-      extra: {
-        start_at: '',
-        end_at: '',
-        vbank_result: 1,
-        quota: '0,2,3',
-        theme: 'purple',
-        custom_background: '#00a086',
-        custom_font_color: '#ffffff'
-      }
-    }).error(function (data) {
-
-      console.log(data);
-    }).cancel(function (data) {
-
-      console.log(data);
-    }).ready(function (data) {
-
-      console.log(data);
-    }).confirm(function (data) {
-      console.log(data);
-      var enable = true;
-      if (enable) {
-        BootPay.transactionConfirm(data);
-      } else {
-        BootPay.removePaymentWindow();
-      }
-    }).close(function (data) {
-      console.log(data);
-    }).done(function (data) {
-      console.log(data);
-    });
-  }
-  }
-</script>
-
-<form name="orderFrm" id="orderFrm" method="post">
-  <input type="hidden" name="version" value="1.0">
-  <input type="hidden" name="mid">
-  <input type="hidden" name="old">
-  <input type="hidden" name="price" value="${dto.total}">
-  <input type="hidden" name="timestamp" value="">
-  <input type="hidden" name="currency" value="WON">
-
-  <!-- 상품부분-->
-  <input type="hidden" name="goodname" value="${dto.product_nm}">
-  <input type="hidden" name="goodcode" value="123456"> <!--상품코드번호-->
-  <input type="hidden" name="goodea" value="${dto.product_ea}">
-  <input type="hidden" name="">
-  <input type="hidden" name="">
-</form>
 
 
 <div id="layout_body" class="layout_body">
@@ -165,7 +87,9 @@
         </div>
       </div>
     </div>
-
+  <c:forEach var="cartId" items="${cartId}">
+    <input type="hidden" value="${cartId}" name="cartId">
+  </c:forEach>
 
     <div id="orderPaymentLayout" class="subpage_wrap order_payment" data-ezmark="undo">
       <div class="subpage_container v2 Pt0 order_payment_left">
@@ -203,10 +127,12 @@
               <c:set var="totalsale" value="0"/>
               <c:set var="totalresult" value="0"/>
 
-              <c:forEach var="list" items="${list}">
-              <c:set var="totalprice" value="${totalprice+list.pprice}"/>
-              <c:set var="totalsale" value="${totalsale+list.pprice-list.psale}"/>
-              <c:set var="totalresult" value="${totalresult+list.psale}"/>
+              <c:forEach var="list" items="${list}" varStatus="status">
+              <c:set var="totalprice" value="${totalprice+list.pprice*count[status.index]}"/>
+              <c:set var="totalsale" value="${totalsale+list.pprice-list.psale*count[status.index]}"/>
+              <c:set var="totalresult" value="${totalresult+list.psale*count[status.index]}"/>
+              <input type="hidden" name="pcode" value="${list.pcode}">
+
               <li class="cart_goods">
                 <div class="cart_goods_detail">
 
@@ -215,12 +141,14 @@
                       <ul>
                         <li class="img_area">
                           <a href="#"><img src="${list.pimg1}" title="" alt="상품이미지" /></a>
+                          <input type="hidden" name="img1" value="${list.pimg1}">
                         </li>
                         <li class="option_area">
 
 
-                          <div class="goods_name v2">
-                            <a href="">${list.pname}</a>
+                          <div class="goods_name v2" >
+                            <a href="/item?pcode=${list.pcode}" >${list.pname}</a>
+                            <input type="hidden" name="pname" value="${list.pname}">
                           </div>
 
 
@@ -229,7 +157,8 @@
                           </ul>
 
                           <div class="cart_quantity">
-                            <span class="xtle">수량</span> ${count}개
+                            <span class="xtle">수량</span> ${count[status.index]}개
+                            <input type="hidden" name="count" value="${count[status.index]}">
                             <span class="add_txt">(<span class="cart_price_num"><fmt:formatNumber pattern="#,###" value="${list.pprice}"/></span>&#x20a9;)</span>
                           </div>
 
@@ -240,22 +169,24 @@
 
                     <ul class="block block2 x1" id="mobile_cart_sale_tr_989">
                       <li class="price_a">
-                        <span class="ptitle">상품금액</span><fmt:formatNumber pattern="#,###" value="${list.pprice*count}"/>&#x20a9;
+                        <span class="ptitle">상품금액</span><fmt:formatNumber pattern="#,###" value="${list.pprice*count[status.index]}"/>&#x20a9;
+                        <input type="hidden" name="priceeach" value="${list.pprice*count[status.index]}">
                       </li>
                       <li id="cart_sale_tr_989" class="price_b">
                         <span class="ptitle">할인금액</span>
                         <div id="cart_option_sale_total_989">
-                          <fmt:formatNumber pattern="#,###" value="${(list.pprice-list.psale)*count}"/>
+                          <fmt:formatNumber pattern="#,###" value="${(list.pprice-list.psale)*count[status.index]}"/>
                         </div>
                       </li>
                       <li class="price_c">
                         <span class="ptitle">할인적용금액</span>
-                        <span class="total_p"><span id="option_suboption_price_sum_989"><fmt:formatNumber pattern="#,###" value="${list.psale*count}"/></span>&#x20a9;</span>
+                        <span class="total_p"><span id="option_suboption_price_sum_989"><fmt:formatNumber pattern="#,###" value="${list.psale*count[status.index]}"/></span>&#x20a9;</span>
                       </li>
                     </ul>
                   </div>
                 </div>
                 </c:forEach>
+
               </li>
 
             </ul>
@@ -263,8 +194,10 @@
           </div>
 
         </div>
-
-
+          <input type="hidden" name="version" value="1.0">
+          <input type="hidden" id="price" name="price" value="${totalprice}">
+        <input type="hidden" id="mid" name="mid" value="${user.mid}">
+        <input type="hidden" name="ordernum" id="ordernum" value="">
         <div class="order_subsection v2">
           <!-- ++++++++++++++++++++ 주문자 :: START ++++++++++++++++++++ -->
           <h3 class="title3"><span designElement="text" textIndex="3"   >주문자</span></h3>
@@ -274,14 +207,14 @@
               <ul class="list_01 v2">
                 <li><input type="text" name="cname" id="cname" value="" class="pilsu" style="width:170px;" title="주문자 이름" placeholder="주문자 이름" required />
                 <li>
-                  <input type="tel" name="chp1" id="chp1" value="" class="pilsu" style="width:64px;" title="휴대폰" placeholder="휴대폰" required /> -
-                  <input type="tel" name="chp2" id="chp2" value="" class="pilsu size_phone" placeholder="휴대폰" required /> -
-                  <input type="tel" name="chp3" id="chp3" value="" class="pilsu size_phone" placeholder="휴대폰" required />
+                  <input type="tel" name="ctel1" id="ctel1" value="" class="pilsu" style="width:64px;" title="휴대폰" placeholder="휴대폰" required /> -
+                  <input type="tel" name="ctel2" id="ctel3" value="" class="pilsu size_phone" placeholder="휴대폰" required /> -
+                  <input type="tel" name="ctel3" id="ctel2" value="" class="pilsu size_phone" placeholder="휴대폰" required />
                 </li>
                 <li>
-                  <input type="tel" name="ctel1" id="ctel1" value="" style="width:64px;" title="연락처2" placeholder="전화" /> -
-                  <input type="tel" name="ctel2" id="ctel2" value="" class="size_phone" placeholder="전화" /> -
-                  <input type="tel" name="ctel3" id="ctel3" value="" class="size_phone" placeholder="전화" />
+                  <input type="tel" name="chp1" id="chp1" value="" style="width:64px;" title="연락처2" placeholder="전화" /> -
+                  <input type="tel" name="chp2" id="chp2" value="" class="size_phone" placeholder="전화" /> -
+                  <input type="tel" name="chp3" id="chp3" value="" class="size_phone" placeholder="전화" />
                   <span class="desc">(선택)</span>
                 </li>
                 <li><input type="email" name="cemail" id="cemail" value="" class="pilsu size_email_full" title="이메일" placeholder="주문자 이메일" required /></li>
@@ -311,18 +244,18 @@
                   <input type="text" name="person_addr" id="person_addr" value="" class="pilsu size_address" title="도로명 주소" readonly />
                 </li>
                 <li class="domestic goods_delivery_info ">
-                  <input type="text" name="person_addrdtc" id="person_addrdtc" value="" class="pilsu size_address" title="나머지주소" required />
+                  <input type="text" name="person_addrtc" id="person_addrtc" value="" class="pilsu size_address" title="나머지주소" required />
                 </li>
                 <!-- 연락처 -->
                 <li>
-                  <input type="tel" name="person_hp" id="person_hp1" value="" class="pilsu" style="width:64px;"  title="휴대폰" placeholder="핸드폰" required /> -
-                  <input type="tel" name="person_hp" id="person_hp2" value="" class="pilsu size_phone"  placeholder="핸드폰" required /> -
-                  <input type="tel" name="person_hp" id="person_hp3" value="" class="pilsu size_phone"  placeholder="핸드폰" required />
+                  <input type="tel" name="person_phone" id="person_phone1" value="" class="pilsu" style="width:64px;"  title="휴대폰" placeholder="핸드폰" required /> -
+                  <input type="tel" name="person_phone" id="person_phone2" value="" class="pilsu size_phone"  placeholder="핸드폰" required /> -
+                  <input type="tel" name="person_phone" id="person_phone3" value="" class="pilsu size_phone"  placeholder="핸드폰" required />
                 </li>
                 <li>
-                  <input type="tel" name="person_phone" id="person_phone1" value="" style="width:64px;"  title="연락처2" placeholder="전화" /> -
-                  <input type="tel" name="person_phone" id="person_phone2" value="" class="size_phone"  placeholder="전화" /> -
-                  <input type="tel" name="person_phone" id="person_phone3" value="" class="size_phone"  placeholder="전화" />
+                  <input type="tel" name="person_hp" id="person_hp1" value="" style="width:64px;"  title="연락처2" placeholder="전화" /> -
+                  <input type="tel" name="person_hp" id="person_hp2" value="" class="size_phone"  placeholder="전화" /> -
+                  <input type="tel" name="person_hp" id="person_hp3" value="" class="size_phone"  placeholder="전화" />
                   <span class="desc">(선택)</span>
                 </li>
                 <!-- 이메일 -->
@@ -513,6 +446,7 @@
                 <!-- 결제 버튼 -->
                 <div class="pay_layer btn_area_c" id="pay_layer1">
                   <input type="button" value="결제하기" name="button_pay" id="pay" class="btn_resp size_extra color2 Wmax" />
+                  <input type="button" value="테스트" name="button_pay" id="save" class="btn_resp size_extra color2 Wmax" />
                   <span class="hide"><input type="button" value="장바구니로" class="btn_resp size_extra" onclick="document.location.href='cart';" /></span>
                 </div>
               </div>
@@ -555,11 +489,131 @@
     });
 
     $("#pay").click(function (){
-      if($(".pilsu").val() == ""){ alert("필수정보를 입력해주세요");}
+     /* if($(".pilsu").val() == ""){ alert("필수정보를 입력해주세요");}
       else if(!($(".agree_chk").is(":checked"))){alert("필수 동의항목을 모두 체크해 주세요");}
       else{
 
-      }
-    })
+      }*/
 
+      var mname = document.getElementById("cname").value;
+      var mtel = document.getElementById("ctel1").value + document.getElementById("ctel2").value + document.getElementById("ctel3").value;
+      var memail = document.getElementById("cemail").value;
+      var maddr = document.getElementById("person_post").value+ document.getElementById("person_addr").value + document.getElementById("person_addrtc").value;
+      var price2 = ${totalresult};
+      var pname = document.getElementsByName("pname")
+      if(pname.length>1){
+        var len = pname.length-1;
+        pname = pname[0].value+" 외 "+ len +"개";
+      }else{
+        pname = pname[0].value;
+      }
+      var count = document.getElementsByName("count")[0].value;
+      var ordernum = function uuidv4() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        )
+      };
+      $("#ordernum").val(ordernum());
+
+
+        BootPay.request({
+          price: price2,
+          application_id: "635a96d6cf9f6d001d374108",
+          name: pname,
+          pg: 'inicis',
+          method: '',
+          show_agree_window: 0,
+          items: [
+            {
+              item_name: pname,
+              qty: count,
+              unique: '123',
+              price: price2,
+              cat1: '',
+              cat2: '',
+            }
+          ],
+          user_info: {
+            username: mname,
+            email: memail,
+            addr: maddr,
+            phone: mtel
+          },
+          order_id: $("#ordernum").val(),
+          params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
+          account_expire_at: '2020-10-25',
+          extra: {
+            start_at: '',
+            end_at: '',
+            vbank_result: 1,
+            quota: '0,2,3',
+            theme: 'purple',
+            custom_background: '#00a086',
+            custom_font_color: '#ffffff'
+          }
+        }).error(function (data) {
+
+          console.log(data);
+        }).cancel(function (data) {
+
+          console.log(data);
+        }).ready(function (data) {
+
+          console.log(data);
+        }).confirm(function (data) {
+
+          var enable;
+
+
+          var pcode = [];
+          var product_ea = [];
+
+          $("input[name=pcode]").each(function(index,item){//체크된 리스트 저장
+            pcode.push($(item).val());
+          });
+          $("input[name=count]").each(function(index,item){//체크된 리스트 저장
+            product_ea.push($(item).val());
+          });
+
+          //재고 검증 ajax 호출
+          $.ajax({
+            url         :   "/countstock",
+            traditional :   true,
+            contentType :   "application/x-www-form-urlencoded; charset=UTF-8",
+            type        :   "post",
+            async       :   false,
+            data        :   { pcode : pcode, product_ea:product_ea },
+            success     :   function(data){
+              console.log(data.result + " : data")
+              if(data.result) {
+                enable = true;
+              } else {
+                enable = false;
+              }
+            },
+            error       :   function(request, status, error){
+              console.log("재고확인 ajax 에러");
+            }
+          });
+          console.log(enable +": enable");
+          console.log(data);
+          if (enable) {
+            BootPay.transactionConfirm(data);
+            console.log("enable456");
+          } else {
+            BootPay.removePaymentWindow();
+            alert("재고가 떨어졌습니다");
+          }
+        }).close(function (data) {
+          console.log(data);
+        }).done(function (data) {
+          frm.submit();
+          console.log(data);
+        });
+
+    })
+    function isstock(enable) {
+      //배열 선언
+
+    }
   </script>

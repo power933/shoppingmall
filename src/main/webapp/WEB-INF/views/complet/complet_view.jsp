@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="layout_body" class="layout_body">
     <div class="subpage_wrap">
         <div class="subpage_container v3 Pb10">
@@ -7,7 +9,7 @@
                 <h2><span designElement="text">주문완료</span></h2>
             </div>
             <div class="mypage_greeting">
-                <span class="username">홍길동</span>님의 주문이 정상적으로 처리되었습니다.
+                <span class="username">${list.cname}</span>님의 주문이 정상적으로 처리되었습니다.
             </div>
         </div>
     </div>
@@ -26,7 +28,9 @@
                                 </li>
                             </ul>
                         </li>
-
+                        <c:set value="0" var="price"/>
+                        <c:forEach var="price1" items="${list.priceeach}" varStatus="status">
+                            <c:set value="${price+list.priceeach[status.index]}" var="price"/>
                         <li class="cart_goods ">
                             <div class="cart_goods_detail">
                                 <div class="cgd_contents">
@@ -37,13 +41,14 @@
                                             </li>
                                             <li class="option_area">
                                                 <div class="goods_name v2 d2">
-                                                    <a href="#">상품명</a>
+                                                    <a href="#">${list.pname[status.index]}</a>
                                                 </div>
                                                 <ul class="cart_option">
                                                     <li><span class="xtle">색상</span> 블루</li>
                                                 </ul>
                                                 <div class="cart_quantity">
-                                                    <span class="xtle">수량</span> 1개												<span class="add_txt">(8,910,000&#x20a9;)</span>
+                                                    <span class="xtle">수량</span> ${list.count[status.index]}개
+                                                    <span class="add_txt">(${price1}&#x20a9;)</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -51,6 +56,7 @@
                                 </div>
                             </div>
                         </li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -63,12 +69,12 @@
                 <h3 class="title3"><span>주문자</span></h3>
                 <ul class="list_01 v2">
                     <li>
-                        <span class="name1 pointcolor2 imp">홍길동</span>
+                        <span class="name1 pointcolor2 imp">${list.cname}</span>
                     </li>
                     <li>
-                        <span class="phone1">010-1234-5678</span>
+                        <span class="phone1">${list.ctel1}-${list.ctel2}-${list.ctel3}</span>
                     </li>
-                    <li><span class="email1">hong@nate.com</span></li>
+                    <li><span class="email1">${list.recipient_email}</span></li>
                     <li class="desc">
                         주문자 정보로 주문 관련 정보가 문자와 이메일로 발송됩니다.<br />
                         비회원은 이메일과 주문번호로 주문조회가 가능합니다.<br />
@@ -78,21 +84,21 @@
                 <h3 class="title3"><span>배송지</span></h3>
                 <ul class="list_01 v2">
                     <li>
-                        <span class="name1 pointcolor imp">홍길동</span>
+                        <span class="name1 pointcolor imp">${list.person_nm}</span>
                         <span class="gray_06">(대한민국)</span>
                     </li>
                     <li>
-                        [ 12345 ]
-                        서울특별시 마포구 신촌로 25-4<br/>
+                        [ ${list.person_post} ]
+                        ${list.person_addr}<br/>
                         <span class="desc">
-                        (25-4)
+                        ${list.person_addrtc}
                         </span>
                     </li>
                     <li>
-                        010-1234-5678
+                        ${list.person_phone[0]}-${list.person_phone[1]}-${list.person_phone[2]}
                     </li>
                     <li>
-                        배송 전에 미리 연락해 주세요.
+                        ${list.msg}
                     </li>
                 </ul>
             </div>
@@ -105,7 +111,7 @@
                 <div class="order_price_total">
                     <ul>
                         <li class="th"><strong><span>상품금액</span></strong></li>
-                        <li class="td">8,910,000&#x20a9;</li>
+                        <li class="td"><fmt:formatNumber value="${price}" pattern="#,###"/>&#x20a9;</li>
                     </ul>
                     <ul>
                         <li class="th">
@@ -118,7 +124,7 @@
                     <ul class="total">
                         <li class="th"><span>총 결제금액</span></li>
                         <li class="td">
-                            <span class="price"><span class="settle_price">8,910,000</span>&#x20a9;</span>
+                            <span class="price"><span class="settle_price"><fmt:formatNumber value="${price}" pattern="#,###"/></span>&#x20a9;</span>
                         </li>
                     </ul>
                 </div>
@@ -129,8 +135,8 @@
                     <tr>
                         <th scope="row"><p>주문번호</p></th>
                         <td>
-                            123456789 &nbsp;
-                            <span class="Dib desc">(2022-10-25 14:26)</span>
+                            ${list.ordernum}
+                            <span class="Dib desc">(${list.orderdate})</span>
                         </td>
                     </tr>
                     <tr>
@@ -140,13 +146,13 @@
                     <tr>
                         <th scope="row"><p>결제일시</p></th>
                         <td>
-                            입금대기
+                            <fmt:formatDate value=""/>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><p>결제방식</p></th>
                         <td>
-                            신용카드
+                            ${list.payment}
                         </td>
                     </tr>
                     <!--무통장 일 경우-->
@@ -161,7 +167,7 @@
                     <!--무통장 일 경우-->
                     <tr>
                         <th scope="row"><p>결제금액</p></th>
-                        <td><strong>8,910,000&#x20a9;</strong></td>
+                        <td><strong>${price}&#x20a9;</strong></td>
                     </tr>
                     </tbody>
                 </table>
@@ -170,8 +176,7 @@
     </div>
 
     <div class="Pb60 C">
-        <a href="#" class="btn_resp size_c color2"><span>주문취소</span></a>
-        <a href="#" class="btn_resp size_c color5"><span>결제하기</span></a>
+        <a href="/" class="btn_resp size_c color5"><span>확인</span></a>
     </div>
     <style type="text/css">
         @media only screen and (max-width:767px) {

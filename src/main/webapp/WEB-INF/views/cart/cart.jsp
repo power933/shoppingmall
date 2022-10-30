@@ -7,6 +7,7 @@
 <input type="hidden" id="memail" value="${member[0].memail}">
 <input type="hidden" id="mtel" value="${member[0].mtel}">
 <input type="hidden" id="maddr" value="${member[0].addr}">
+<form name="buy">
 <ul class="resp_cart_wrap">
     <!-- ++++++++++++ cart left area +++++++++++ -->
     <li class="cart_left">
@@ -38,19 +39,19 @@
                         </ul>
                     </li>
 
-                    <form method="post" action="cartdelete" name="f">
+
                     <c:set var="totalPrice" value="0"/>
                     <c:set var="totalSale" value="0"/>
                     <c:set var="resultPrice" value="0"/>
                     <c:forEach var="list" items="${list}" varStatus="status">
                         <c:set var="totalPrice" value="${totalPrice+list.pprice*list.product_count}"/>
                         <c:set var="resultPrice" value="${resultPrice+list.psale*list.product_count}"/>
-                    <input type="hidden" name="pcode[]" value="${list.pcode}">
+                    <input type="hidden" name="pcode" value="${list.pcode}">
                     <li class="cart_goods" id="cart_goods_987">
                         <div class="cart_goods_detail">
                             <div class="cgd_top">
                                 <label>
-                                    <input type="hidden" name="ship_possible[987]" value="Y"/>
+                                    <input type="hidden" name="" value="Y"/>
                                     <input type="checkbox" class="checkSelect" data="${list.pprice*list.product_count}" data1="${list.pprice*list.product_count-list.psale*list.product_count}" data2="${list.psale*list.product_count}"  name="cart_option_seq[]" id="select${status.count}" value="${list.cartId}" stat="Y" rel="775" />
                                     <span class="goods_name">${list.pname}</span>
                                     <input type="hidden" id="pname${list.cartId}" value="${list.pname}">
@@ -91,23 +92,24 @@
                                         <span class="total_p" id="option_suboption_price_sum_987"><span class="num"><fmt:formatNumber value="${list.psale*list.product_count}" pattern="#,###"/></span>&#x20a9;</span>
                                         <input type="hidden" class="hiddenResult" id="price${list.cartId}" value="${list.psale*list.product_count}">
                                     </li>
-                                    <input type="hidden" name="cartId" value="{list.cartId}">
+                                    <input type="hidden" name="cartId" value="${list.cartId}">
                                 </ul>
-
+                                <input type="hidden" id="cartId${list.cartId}" value="${list.cartId}">
                                 <ul class="block block3">
                                     <li><button type="button" class="btn_option_modify btn_resp">옵션/수량변경</button></li>
-                                    <li><button type="button" class="btn_direct_buy btn_resp color2" onclick="paymentOne('${list.cartId}')">바로구매</button></li>
+                                    <li><button type="button" class="btn_direct_buy btn_resp color2" onclick="onebtn('${list.cartId}');">바로구매</button></li>
                                 </ul>
 
                             </div>
                         </div>
                     </li>
-                        <input type="hidden" id="cartId${list.cartId}" value="${list.cartId}">
+
                         <input type="hidden" id="lcate${list.cartId}" value="${list.plarge_cate}">
                         <input type="hidden" id="scate${list.cartId}" value="${list.psmall_cate}">
-                        <input type="hidden" id="count${list.cartId}" value="${list.product_count}">
+                        <input type="hidden" id="count${list.cartId}" name="product_ea" value="${list.product_count}">
+                        <input type="hidden" id="pcode${list.cartId}" value="${list.pcode}">
                     </c:forEach>
-                    </form>
+
                 </ul>
             </div>
         </div>
@@ -158,7 +160,7 @@
 
         <ul class="cart_order_btn_area">
             <li>
-                <input type="button" class="btn_resp size_c color2 btn_all_order"  value="전체 주문하기" onclick="payment()" />
+                <input type="button" class="btn_resp size_c color2 btn_all_order" id="allbtn"  value="전체 주문하기"  />
             </li>
         </ul>
         <div class="pdb10 center"></div>
@@ -169,12 +171,25 @@
 </ul>
 <div class="total_price_n_btns">
 </div>
-
+</form>
 
 
 <script>
+    function onebtn(cartid){
+        var pcode=document.getElementById("pcode"+cartid).value;
+        var count=document.getElementById("count"+cartid).value;
+        location.href="order?pcode="+pcode+"&product_ea="+count;
+    }
 
     $(document).ready(function() {
+
+        $("#allbtn").click(function (){
+            buy.action = "/order";
+            buy.submit();
+        })
+
+
+
     var size = $(".size").val();
         $(".btn_select_all").click(function() {
             var total = $("#totalprice1").val();
@@ -248,33 +263,11 @@
 
 
     });
-    /*var ckbox = document.getElementById("select"+i+1);
-    $("")*/
 
-    /*
-    function priceset(){
-        var result = 0;
-        var sale = 0;
-        var price = 0;
-        $("#mobile_cart_sale_tr_987").each(function(index, element){
-           // if($(element).find(".checkSelect").is(":checked") === true){
-            result += parseInt($(element).find(".hiddenResult").val());
-            sale += parseInt($(element).find(".hiddenSale").val());
-            price += parseInt($(element).find(".hiddenPrice").val());
-            console.log(price);
-            console.log(sale);
-            // }
-
-        });
-    }
-    //id : mobile_cart_sale_tr_987  name="viewPrice" deletebtn
-    $(".checkSelect").on("change", function(){
-
-        priceset($("#mobile_cart_sale_tr_987"));
-    });
-*/
     document.getElementById("deletebtn").addEventListener("click", ev => {
-       f.submit();
+        buy.action = "cartdelete";
+        buy.method="post"
+        buy.submit();
     });
 
 </script>

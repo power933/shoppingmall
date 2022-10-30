@@ -13,4 +13,7 @@ public interface ItemMapper {
 
     @Select("select * from product where pcode=#{pcode}")
     ItemDTO selectByCode(String pcode);
+
+    @Select("select pstock from product where pcode=#{pcode}")
+    ItemDTO getStock(String pcode);
 }

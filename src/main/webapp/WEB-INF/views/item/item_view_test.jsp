@@ -5,24 +5,14 @@
 <script>
   $(function (){
 
-
-    $("#buy_btn").click(function (){  //모바일용 구매하기 버튼
-
-      if(confirm("비회원으로 구매진행 하시겠습니까")){   //세션달면 바꿀것
-        frm.method="post";
-        frm.action="order"
-        frm.submit();
-      }
-
-    });
-    $(".btn_resp").click(function (){ //pc용 구매하기버튼
+    $('[name=buybtn]').click(function (){
       var product_ea = document.getElementById("product_ea").value;
       if(product_ea==0) {
         alert("상품 수량을 선택해주세요");
       }
       else{
       if($(".islogin").text()=='회원가입') {
-        if (confirm("비회원으로 구매진행 하시겠습니까")) {   //세션달면 바꿀것
+        if (confirm("비회원으로 구매진행 하시겠습니까")) {
           frm.action = "order"
           frm.submit();
         }
@@ -309,7 +299,7 @@
           <li>
             <ul class="basic_btn_area">
 
-              <li><button type="button" id="buy_btn" class="btn_resp size_c color2"><span designElement="text" textIndex="99" >구매하기</span></button></li>
+              <li><button type="button" id="buy_btn" name="buybtn" class="btn_resp size_c color2"><span designElement="text" textIndex="99" >구매하기</span></button></li>
             </ul>
           </li>
 
@@ -381,7 +371,7 @@
             <li>
               <ul class="basic_btn_area">
                 <li><button type="button" id="buy_basket" class="btn_resp size_extra2 NpayNo"><span designElement="text">장바구니</span></button></li>
-                <li><button type="button" id="buy_btn2" class="btn_resp size_extra2 color2 NpayNo"><span designElement="text" >구매하기</span></button></li>
+                <li><button type="button" id="buy_btn2" name="buybtn" class="btn_resp size_extra2 color2 NpayNo"><span designElement="text" >구매하기</span></button></li>
               </ul>
             </li>
           </ul>
@@ -590,6 +580,7 @@
 <script>
   document.getElementById("buy_basket").addEventListener("click",ev => {
     var product_ea = document.getElementById("product_ea").value;
+    console.log("1");
     if(product_ea==0) alert("상품 수량을 선택해주세요")
     else{
       if(confirm("장바구니에 담았습니다 장바구니로 이동하시겠습니까?")){
@@ -597,7 +588,7 @@
       location.href="cartinsert?pcode="+pcode+"&product_count="+product_ea+"&iscart=Y";
     }
       else{
-        var pcode = document.getElementById("pcode").innerHTML;
+        var pcode = document.getElementById("pcode").value;
         location.href="cartinsert?pcode="+pcode+"&product_count="+product_ea+"&iscart=N";
       }
     }

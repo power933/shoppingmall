@@ -59,7 +59,7 @@
     <%@ include file="../parts/top.jsp" %>
   </div>
 
-  <form name="orderFrm" id="orderFrm" method="post">
+  <form id="frm" name="frm" method="post" action="/paydone">
   <div class="resp_wrap display_wrap">
     <!--상품상세 페이지 영역 orderview.html-->
     <%@ include file="./orderview.jsp" %>
