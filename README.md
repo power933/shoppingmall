@@ -1,4 +1,4 @@
-# shoppingmal
+# shoppingmall
 가구 및 디자인 용품 쇼핑몰(사용자 page)
 
 1. 개발환경
