@@ -1,5 +1,7 @@
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
+
 <div class="footer_b">
     <div class="resp_wrap">
         <ul class="menu2">
@@ -102,13 +104,13 @@
         <div class="line">
             <ul class="menu3">
                 <li class="company"><span designElement="text" textIndex="22"   ></span> / <span class="pcolor">르네프로스트 X 아쿠아릭 /</span></li>
-                <li class="ceo"><span designElement="text" textIndex="23"   >CEO</span> : <span class="pcolor">홍길동 </span></li>
+                <li class="ceo"><span designElement="text" textIndex="23"   >CEO</span> : <span class="pcolor">${cominfo.scompany_name} </span></li>
                 <li class="address"><span designElement="text" textIndex="24"   >ADDRESS</span> : <span class="pcolor"></span></li>
-                <li class="phone"><span designElement="text" textIndex="25"   >TEL</span> : <a href="tel:02-1234-5678" class="link_f">02-1234-5678</a></li>
-                <li class="company"><span designElement="text" textIndex="26"   >COMPANY</span> : <span class="pcolor">주식회사 00</span></li>
-                <li class="business_license"><span designElement="text" textIndex="27"   >BUSINESS LICENCE</span> :  000-00-00000 &nbsp; &nbsp; <span class="link_f"><a href="#">사업자정보확인</a></span></li>
+                <li class="phone"><span designElement="text" textIndex="25"   >TEL</span> : <a href="${cominfo.stel}" class="link_f">${cominfo.stel}</a></li>
+                <li class="company"><span designElement="text" textIndex="26"   >COMPANY</span> : <span class="pcolor">${cominfo.scompany_name}</span></li>
+                <li class="business_license"><span designElement="text" textIndex="27"   >BUSINESS LICENCE</span> :  ${cominfo.sbn} &nbsp; &nbsp; <span class="link_f"><a href="#">사업자정보확인</a></span></li>
                 <li class="mailselling_license"><span designElement="text" textIndex="28"   >ONLINE LICENCE</span> : <span class="pcolor">2022-인테리어-0576</span></li>
-                <li class="member_info_manager"><span designElement="text" textIndex="29"   ><span xss=removed>PRIVACY OFFICER</span></span> : <span class="pcolor">홍길동 (<a class="pcolor" href="mailto:test@gmail.com">test@gmail.com</a>)</span></li>
+                <li class="member_info_manager"><span designElement="text" textIndex="29"   ><span xss=removed>PRIVACY OFFICER</span></span> : <span class="pcolor">홍길동 (<a class="pcolor" href="mailto:test@gmail.com">${cominfo.semail}</a>)</span></li>
                 
             </ul>
             <!-- //회사 정보 -->

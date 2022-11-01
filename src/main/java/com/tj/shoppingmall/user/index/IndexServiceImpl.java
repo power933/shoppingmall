@@ -1,6 +1,8 @@
 package com.tj.shoppingmall.user.index;
 
+import com.tj.shoppingmall.user.company.CompanyDTO;
 import com.tj.shoppingmall.user.item.ItemDTO;
+import com.tj.shoppingmall.user.mapper.CompanyMapper;
 import com.tj.shoppingmall.user.mapper.IndexMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import java.util.List;
 public class IndexServiceImpl implements IndexService {
     @Autowired
     IndexMapper indexMapper;
+    @Autowired
+    CompanyMapper companyMapper;
 
     @Override
     public List<IndexCategoryDTO> getCategoryAll(){
@@ -32,6 +36,11 @@ public class IndexServiceImpl implements IndexService {
         String smallCate = totalCate.substring(2,totalCate.length());
 
         return indexMapper.getItemByCategory(largeCate,smallCate);
+    }
+
+    @Override
+    public List<CompanyDTO> select() {
+        return companyMapper.select();
     }
 
 

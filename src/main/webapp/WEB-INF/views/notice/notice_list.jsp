@@ -9,10 +9,10 @@
 <div id="boardLnbCommon">
     <h3 class="title1"><a href="#" designElement="text">CS CENTER</a></h3>
     <ul class="lnb_sub">
-        <li ><a href="#" designElement="text">공지사항</a></li>
-        <li ><a href="#" designElement="text">자주 묻는 질문</a></li>
-        <li ><a href="#" designElement="text">상품문의</a></li>
-        <li ><a href="#" designElement="text"><b>상품후기</b></a></li>
+        <li ><a href="/notice" designElement="text">공지사항</a></li>
+        <li ><a href="/cs" designElement="text">자주 묻는 질문</a></li>
+        <%--<li ><a href="#" designElement="text">상품문의</a></li>
+        <li ><a href="#" designElement="text"><b>상품후기</b></a></li>--%>
     </ul>
 </div>
 <script>
@@ -78,7 +78,7 @@ $(function() {
 <c:forEach var="list" items="${list}">
 <ul class="tbody">
 <li class="mo_hide">
-<span class="mtitle" designElement="text">번호:${list.idx}</span> </li>
+<span class="mtitle" designElement="text">번호:</span> ${list.idx}</li>
 <li class="subject">
 ${list.ntitle}
 </li>

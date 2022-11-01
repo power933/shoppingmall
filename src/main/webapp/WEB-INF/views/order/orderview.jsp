@@ -489,31 +489,29 @@
     });
 
     $("#pay").click(function (){
-     /* if($(".pilsu").val() == ""){ alert("필수정보를 입력해주세요");}
+      if($(".pilsu").val() == ""){ alert("필수정보를 입력해주세요");}
       else if(!($(".agree_chk").is(":checked"))){alert("필수 동의항목을 모두 체크해 주세요");}
+
       else{
-
-      }*/
-
-      var mname = document.getElementById("cname").value;
-      var mtel = document.getElementById("ctel1").value + document.getElementById("ctel2").value + document.getElementById("ctel3").value;
-      var memail = document.getElementById("cemail").value;
-      var maddr = document.getElementById("person_post").value+ document.getElementById("person_addr").value + document.getElementById("person_addrtc").value;
-      var price2 = ${totalresult};
-      var pname = document.getElementsByName("pname")
-      if(pname.length>1){
-        var len = pname.length-1;
-        pname = pname[0].value+" 외 "+ len +"개";
-      }else{
-        pname = pname[0].value;
-      }
-      var count = document.getElementsByName("count")[0].value;
-      var ordernum = function uuidv4() {
-        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-        )
-      };
-      $("#ordernum").val(ordernum());
+        var mname = document.getElementById("cname").value;
+        var mtel = document.getElementById("ctel1").value + document.getElementById("ctel2").value + document.getElementById("ctel3").value;
+        var memail = document.getElementById("cemail").value;
+        var maddr = document.getElementById("person_post").value+ document.getElementById("person_addr").value + document.getElementById("person_addrtc").value;
+        var price2 = ${totalresult};
+        var pname = document.getElementsByName("pname")
+        if(pname.length>1){
+          var len = pname.length-1;
+          pname = pname[0].value+" 외 "+ len +"개";
+        }else{
+          pname = pname[0].value;
+        }
+        var count = document.getElementsByName("count")[0].value;
+        var ordernum = function uuidv4() {
+          return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+                  (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+          )
+        };
+        $("#ordernum").val(ordernum());
 
 
         BootPay.request({
@@ -563,18 +561,14 @@
         }).confirm(function (data) {
 
           var enable;
-
-
           var pcode = [];
           var product_ea = [];
-
           $("input[name=pcode]").each(function(index,item){//체크된 리스트 저장
             pcode.push($(item).val());
           });
           $("input[name=count]").each(function(index,item){//체크된 리스트 저장
             product_ea.push($(item).val());
           });
-
           //재고 검증 ajax 호출
           $.ajax({
             url         :   "/countstock",
@@ -595,11 +589,8 @@
               console.log("재고확인 ajax 에러");
             }
           });
-          console.log(enable +": enable");
-          console.log(data);
           if (enable) {
             BootPay.transactionConfirm(data);
-            console.log("enable456");
           } else {
             BootPay.removePaymentWindow();
             alert("재고가 떨어졌습니다");
@@ -610,10 +601,7 @@
           frm.submit();
           console.log(data);
         });
-
+      }
     })
-    function isstock(enable) {
-      //배열 선언
 
-    }
   </script>

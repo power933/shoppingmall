@@ -9,8 +9,8 @@
     <ul class="lnb_sub">
         <li ><a href="/notice" designElement="text">공지사항</a></li>
         <li ><a href="/cs" designElement="text">자주 묻는 질문</a></li>
-        <li ><a href="#" designElement="text">상품문의</a></li>
-        <li ><a href="#" designElement="text"><b>상품후기</b></a></li>
+        <%--<li ><a href="#" designElement="text">상품문의</a></li>
+        <li ><a href="#" designElement="text"><b>상품후기</b></a></li>--%>
     </ul>
 </div>
 <script>

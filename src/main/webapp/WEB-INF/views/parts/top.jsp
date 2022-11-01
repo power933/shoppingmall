@@ -102,11 +102,11 @@
 					<ul class="respCategoryList">
                        				
 						<li class="nav_category_all ">
-							<a class="categoryAllBtn" designElement="text" textIndex="8" href="#none" target="_self">PRODUCT<br>
-                            </a>
+							<%--<a class="categoryAllBtn" designElement="text" textIndex="8" href="#none" target="_self">PRODUCT<br>
+                            </a>--%>
                         <div class="categoryAllSub">
                      <ul>         
-	<li class="categoryDepth1">
+	<%--<li class="categoryDepth1">
 		<a class="categoryDepthLink designElement" designelement="category" href="#">
         <em>거실가구</em>
         </a>
@@ -206,7 +206,7 @@
 	</li>
 	<li class="categoryDepth1">
 		<a class="categoryDepthLink designElement" designelement="category" href="/goods/catalog?code=0007"><em>DEZ ITALIA</em></a>
-	</li>
+	</li>--%>
 
                                     <!-- //카테고리 네비게이션 -->
                                 </ul>
@@ -223,9 +223,9 @@
 						<li class="custom_nav_link">
 							<a class="categoryDepthLink" designElement="text" href="/goods/brand_main" target="_self"><em>Brand</em></a>
                         </li> //-->
-						<li class="custom_nav_link">
+						<%--<li class="custom_nav_link">
 							<a class="categoryDepthLink" designElement="text" textIndex="9" href="/promotion/event" target="_self">PROMOTION</a>
-						</li>
+						</li>--%>
 						<!--<li class="custom_nav_link">
 							<a class="categoryDepthLink" designElement="text" href="/board/?id=custom_bbs2" target="_self">Contract</a>
                         </li> //-->

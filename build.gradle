@@ -4,6 +4,13 @@ plugins {
 	id 'java'
 	id 'war'
 }
+bootWar.enabled = false
+war.enabled = true
+bootWar {
+	archiveBaseName='DesignMall'
+	archiveFileName='DesignMall.war'
+	archiveVersion="0.0.0"
+}
 
 group = 'com.tj'
 version = '0.0.1-SNAPSHOT'
@@ -29,7 +36,6 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'javax.servlet:jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-	implementation files("INIpaySample_v1.3.jar")
 
 	compileOnly 'org.projectlombok:lombok'
 

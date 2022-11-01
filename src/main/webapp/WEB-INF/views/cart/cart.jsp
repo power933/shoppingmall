@@ -96,7 +96,7 @@
                                 </ul>
                                 <input type="hidden" id="cartId${list.cartId}" value="${list.cartId}">
                                 <ul class="block block3">
-                                    <li><button type="button" class="btn_option_modify btn_resp">옵션/수량변경</button></li>
+                                    <%--<li><button type="button" class="btn_option_modify btn_resp">옵션/수량변경</button></li>--%>
                                     <li><button type="button" class="btn_direct_buy btn_resp color2" onclick="onebtn('${list.cartId}');">바로구매</button></li>
                                 </ul>
 
@@ -119,7 +119,7 @@
             <label class="checkbox_allselect"><input type="checkbox" class="btn_select_all" /> <span class="txt">전체선택</span></label>
 
             <div class="btns">
-                <button type="button" class="btn_resp size_b color2 btn_selected_order">선택상품 주문하기</button>
+                <%--<button type="button" class="btn_resp size_b color2 btn_selected_order">선택상품 주문하기</button>--%>
                 <button type="button" class="btn_resp size_b gray_05 btn_select_del" id="deletebtn">선택상품 삭제</button>
             </div>
         </div>

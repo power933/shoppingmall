@@ -1,5 +1,6 @@
 package com.tj.shoppingmall.user.index;
 
+import com.tj.shoppingmall.user.company.CompanyDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class IndexController {
         model.addAttribute("items",indexService.getItemByCategory(totalCate));
         model.addAttribute("recent",indexService.getItemOrderByIndate());
         model.addAttribute("best",indexService.getItemOrderByPsales());
+        model.addAttribute("cominfo",indexService.select().get(0));
+
         return "index/index";
     }
 }
