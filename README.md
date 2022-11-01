@@ -16,7 +16,7 @@ web-server : cafe24
 개말인원 : 2명(퍼블리싱을 제외한 파트 담당)
 
 3. 각 파트별 상세
-1) 메인페이지(index)
+ 1) 메인페이지(index)
 Celebrity Collection : 각 카테고리별로 상품정렬
 기본 주소는 / 이며
 카테고리 클릭시 /{category} 로 이동되어 view 전환.
