@@ -8,7 +8,7 @@
 DB : MySQL
 IDE : IntelliJ
 라이브러리 : Jquery(ajax), JSTL, lombok
-API : BootPay, 주소찾기api
+API : BootPay, 다음(주소찾기), 카카오(지도)
 web-server : cafe24
 
 2. 개발 기간 및 인원
