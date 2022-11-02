@@ -56,5 +56,7 @@ ajax를 통해 재고수량 여부를 파악하고
 todo..
 로그인 시큐리티로 처리
 
+관리자 페이지 깃허브 url : https://github.com/power933/shoppingmall_admin
+
 
 
