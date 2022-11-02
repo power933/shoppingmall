@@ -34,13 +34,13 @@
     <!--상품이미지-->
 
     <div class="gli_image goodsDisplayImageWrap">
-        <a href="javascript:void(0);" class="respItemImageArea" onclick="display_goods_view('767','',this,'goods_view')">
-            <img src="${items.pimg1}" data-src="./product/767_2022051214434020.jpg" class="goodsDisplayImage lazyload" onerror="this.src='./images/noimage.gif'" alt="[디앤에이] 아우라 천연가죽 4인소파"/>
+        <a href="javascript:void(0);" class="respItemImageArea" onclick="location.href='/item?pcode=${items.pcode}'">
+            <img src="${items.pimg1}" data-src="./product/767_2022051214434020.jpg" class="goodsDisplayImage lazyload" onerror="this.src='./images1/noimage.gif'" alt="[디앤에이] 아우라 천연가죽 4인소파"/>
         </a>
         <div class="respGoodsZzim">
             <a class="zzimArea" href="javascript:void(0)" onclick="display_goods_zzim(this, 767)">
-                <img src="./images/icon_zzim.png" class="zzimImage normal " alt="찜하기" title="찜하기" />
-                <img src="./images/icon_zzim_on.png" class="zzimImage active hide" alt="찜한 상품" title="찜한 상품" />
+                <img src="./images1/icon_zzim.png" class="zzimImage normal " alt="찜하기" title="찜하기" />
+                <img src="./images1/icon_zzim_on.png" class="zzimImage active hide" alt="찜한 상품" title="찜한 상품" />
             </a>
         </div>
     </div>

@@ -5,15 +5,15 @@
     <div class='designPopupBand' style='background-color:#fff;'>
     <div class='designPopupBody'>
     <a href='#' target='_self'>
-    <img src='./images/popup_16327281123906.jpg' />
+    <img src='./images1/popup_16327281123906.jpg' />
     </a>
     </div>
     <div class='designPopupClose'>
-    <img src='./images/btn_tbanner_close.png' alt='banner close' />
+    <img src='./images1/btn_tbanner_close.png' alt='banner close' />
     </div>
     </div>
     <div class='designPopupBandBtn absolute center hand hide' style='top:0px; left:50%; width:200px; margin-left:-100px;z-index:12'>
-    <img src='./images/band_btn_open.gif' />
+    <img src='./images1/band_btn_open.gif' />
     </div>
 <!-- //띠배너 -->
 
@@ -22,7 +22,7 @@
 		<div class="resp_wrap">
 			<!-- logo -->
 			<h1 class="logo_area">
-				<a href='/' target='_self'><img src="./images/logo.png" title="인테리어 TRENDY LIVING IDEA" alt="인테리어 TRENDY LIVING IDEA"></a>
+				<a href='/' target='_self'><img src="./images1/logo.png" title="인테리어 TRENDY LIVING IDEA" alt="인테리어 TRENDY LIVING IDEA"></a>
 			</h1>
 
             <!-- 상단 유틸메뉴 -->
@@ -31,7 +31,7 @@
 				<c:choose>
 				<c:when test="${user ne null}" >
 				<li>
-					<p href="./login" designElement="text" textIndex="4" target="_self">${user.mid}님</p>
+					<p href="./login" designElement="text" textIndex="4" target="_self">${user.mname}님</p>
 				</li>
 				<li>
 					<a href="./logout" class="islogin" designElement="text" textIndex="5" target="_self">로그아웃</a>

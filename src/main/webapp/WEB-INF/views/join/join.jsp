@@ -142,7 +142,7 @@
                     oncomplete: function(data) { //선택시 입력값 세팅
                         document.getElementById("addr0").value=data.zonecode;
                         document.getElementById("addr1").value = data.address;
-                        document.getElementById("input[name=addr2]").focus();
+                        document.getElementById("addr2").focus();
                     }
                 }).open();
             });

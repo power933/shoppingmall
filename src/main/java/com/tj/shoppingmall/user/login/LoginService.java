@@ -1,6 +1,7 @@
 package com.tj.shoppingmall.user.login;
 
 import java.security.MessageDigest;
+import java.util.Map;
 
 public interface LoginService {
     Boolean login(String mid,String mpass);
@@ -23,5 +24,8 @@ public interface LoginService {
         }
         return sbuf.toString();
     }
+
+    public String getReturnAccessToken(String code);
+    public Map<String,Object> getUserInfo(String access_token);
 
 }

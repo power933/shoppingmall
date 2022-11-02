@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="visual_title">
     <div class="img_area">
-        <img src="./images/bnr_privacy_main.jpg" title="개인정보처리방침" alt="개인정보처리방침" />
+        <img src="./images1/bnr_privacy_main.jpg" title="개인정보처리방침" alt="개인정보처리방침" />
     </div>
     <div class="visual_gon">
         <ul class="title_inner_a">

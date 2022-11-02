@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <title>인테리어 TRENDY LIVING IDEA</title>
-<link rel="image_src" href="./images/snslogo.png"/>
+<link rel="image_src" href="./images1/snslogo.png"/>
 
 <!-- 구글 웹폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700&amp;subset=korean" rel="stylesheet">
@@ -59,32 +59,32 @@ background-color:#ffffff;}
 
 <div id="wrap">
 <div id="layout_wrap" class="layout_wrap">
-    <%@include file="../parts/top.jsp" %>
+    <%@include file="../fragment/top.jsp" %>
 </div>
 <div class="sliderA wide_visual_slider">
-    <%@include file="../parts/banner.jsp" %>
+    <%@include file="../fragment/banner.jsp" %>
 </div>
 
 <div class="resp_wrap display_wrap">
-	<%@include file="../parts/collection.jsp" %>
+	<%@include file="../fragment/collection.jsp" %>
 </div>
 <br/>
 <br/>
 <br/>
 <div class="full_bnr">
-    <%@include file="../parts/av.jsp" %>
+    <%@include file="../fragment/av.jsp" %>
 </div>
 <div class="full_bnr2">
-   <%@include file="../parts/av2.jsp" %>
+   <%@include file="../fragment/av2.jsp" %>
 </div>
 <div class="resp_wrap display_wrap">
-   <%@include file="../parts/newproduct.jsp" %>
+   <%@include file="../fragment/newproduct.jsp" %>
 </div>
 <div class="resp_wrap display_wrap">
-    <%@include file="../parts/bestproduct.jsp" %>
+    <%@include file="../fragment/bestproduct.jsp" %>
 </div>
 <div id="layout_footer" class="layout_footer">
-    <%@include file="../parts/footer.jsp" %>
+    <%@include file="../fragment/footer.jsp" %>
 </div>
 </div>
 <script type="text/javascript">

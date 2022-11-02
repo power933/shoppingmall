@@ -22,9 +22,9 @@
 
     <!--상품이미지-->
     <div class="gli_image goodsDisplayImageWrap">
-        <a href="#" class="respItemImageArea">
-            <img src="${best.pimg1}" data-src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010671170list1.jpg" class="goodsDisplayImage lazyload item1cut" onerror="this.src='./images/noimage.gif';" alt="[아쿠아릭] 헤네시 4인소파" />
-            <img src="${best.pimg2}" data-src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010674579list1.jpg" class="goodsDisplayImage lazyload item2cut" onerror="this.src='./images/noimage.gif';" alt="[아쿠아릭] 헤네시 4인소파"  />
+        <a href="/item?pcode=${best.pcode}" class="respItemImageArea">
+            <img src="${best.pimg1}" data-src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010671170list1.jpg" class="goodsDisplayImage lazyload item1cut" onerror="this.src='./images1/noimage.gif';" alt="[아쿠아릭] 헤네시 4인소파" />
+            <img src="${best.pimg2}" data-src="https://fdumb.com/data/goods/32/2021/09/27921_temp_16329010674579list1.jpg" class="goodsDisplayImage lazyload item2cut" onerror="this.src='./images1/noimage.gif';" alt="[아쿠아릭] 헤네시 4인소파"  />
         </a>
         <!-- 반응형 시작 -->
         <div class="respGoodsZzim">

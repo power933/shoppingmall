@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LoginMapper {
-    @Select("select mid,mpass from members where mid=#{mid}")
+    @Select("select mid,mpass,mname from members where mid=#{mid}")
     public LoginDTO selectById(String mid);
 }

@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
   <title>인테리어 TRENDY LIVING IDEA</title>
-  <link rel="image_src" href="./images/snslogo.png"/>
+  <link rel="image_src" href="./images1/snslogo.png"/>
 
   <!-- 구글 웹폰트 -->
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700&amp;subset=korean" rel="stylesheet">
@@ -56,7 +56,7 @@
 
 <div id="wrap">
   <div id="layout_wrap" class="layout_wrap">
-    <%@ include file="../parts/top.jsp" %>
+    <%@ include file="../fragment/top.jsp" %>
   </div>
 
   <div class="resp_wrap display_wrap">
@@ -65,7 +65,7 @@
   </div>
 
   <div id="layout_footer" class="layout_footer">
-    <%@ include file="../parts/footer.jsp" %>
+    <%@ include file="../fragment/footer.jsp" %>
   </div>
 
 </div>

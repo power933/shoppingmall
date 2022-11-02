@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <div class="visual_title">
     <div class="img_area">
-        <img src="./images/bnr_agreement_main.jpg" title="이용약관" alt="이용약관" />
+        <img src="./images1/bnr_agreement_main.jpg" title="이용약관" alt="이용약관" />
     </div>
     <div class="visual_gon">
         <ul class="title_inner_a">
