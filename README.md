@@ -65,7 +65,7 @@ ajax를 통해 재고수량 여부를 파악하고
 관리자 페이지에서 작성한 회사 정보를 불러와 출력 + 카카오 지도API
 
 todo..
-로그인 시큐리티로 처리
+로그인 시큐리티로 처리,비회원 장바구니 로컬스토리지 추가
 
 관리자 페이지 깃허브 url : https://github.com/power933/shoppingmall_admin
 
