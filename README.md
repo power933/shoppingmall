@@ -3,12 +3,19 @@
 
 1. 개발환경
 언어 : Java(JDK 11) HTML/CSS, JavaScript
+
 서버 : Apache Tomcat9.0
+
 프레임워크 : SpringBoot 2.7.5, Mybatis
+
 DB : MySQL
+
 IDE : IntelliJ
+
 라이브러리 : Jquery(ajax), JSTL, lombok
+
 API : BootPay, 다음(주소찾기), 카카오(지도,로그인)
+
 web-server : cafe24
 
 2. 개발 기간 및 인원
