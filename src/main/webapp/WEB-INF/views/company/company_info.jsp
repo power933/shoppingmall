@@ -2,7 +2,7 @@
 		 pageEncoding="UTF-8"%>
 <div class="visual_title">
 	<div class="img_area">
-		<img src="./images/bnr_company_main.jpg" title="회사 이미지" alt="회사 이미지" />
+		<img src="./images1/bnr_company_main.jpg" title="회사 이미지" alt="회사 이미지" />
 	</div>
 	<div class="visual_gon">
 		<ul class="title_inner_a">

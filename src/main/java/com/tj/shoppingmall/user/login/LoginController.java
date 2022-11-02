@@ -60,11 +60,8 @@ public class LoginController {
 
     @RequestMapping(value = "/klogin", method = RequestMethod.GET)//카카오로그인
     public String redirectkakao(@RequestParam String code, HttpSession session) throws IOException {
-        System.out.println("code:: " + code);
-
         // 접속토큰 get
         String kakaoToken = loginService.getReturnAccessToken(code);
-        System.out.println("kakaoToken = " + kakaoToken);
         // 접속자 정보 get
         Map<String, Object> result = loginService.getUserInfo(kakaoToken);
         //log.info("result:: " + result);
@@ -73,6 +70,7 @@ public class LoginController {
         String email = (String) result.get("email");
         String userpw = snsId;
 
+        //회원정보없으면 회원가입
         if (loginService.selectById(email) == null) {
             JoinRequestDTO dto = JoinRequestDTO.builder()
                     .mid(email)
@@ -91,10 +89,6 @@ public class LoginController {
         }
 
         session.setAttribute("user",joinService.selectById(email));
-
-
         return "redirect:/";
-
     }
-
 }

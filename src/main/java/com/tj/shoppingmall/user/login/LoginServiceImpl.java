@@ -54,7 +54,7 @@ public class LoginServiceImpl implements LoginService {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=445bf6b9f68ca287d5418a787a92d77e");  //앱 KEY VALUE
-            sb.append("&redirect_uri=http://localhost/klogin"); // 앱 CALLBACK 경로
+            sb.append("&redirect_uri=http://power933.cafe24.com/klogin"); // 앱 CALLBACK 경로
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();

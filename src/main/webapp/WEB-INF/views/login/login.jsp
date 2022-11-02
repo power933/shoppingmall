@@ -110,7 +110,7 @@
 
   function kakaoLogin() {
     Kakao.Auth.authorize({
-      redirectUri: 'http://localhost/klogin'
+      redirectUri: 'http://power933.cafe24.com/klogin'
     }); // 등록한 리다이렉트uri 입력
   }
 </script>
