@@ -1,7 +1,7 @@
 # shoppingmall
 가구 및 디자인 용품 쇼핑몰(사용자 page)
 
-Url : power933.cafe24.com
+Url : http://power933.cafe24.com
 
 1. 개발환경
   언어 : Java(JDK 11) HTML/CSS, JavaScript
