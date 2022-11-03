@@ -37,21 +37,18 @@ Celebrity Collection : 각 카테고리별로 DB에서 불러와 상품정렬
 카테고리 클릭시 /{category} 로 이동되어 view 전환.
 Best collection - 인기 상품(판매량 기준) 
 New Collection - 최신상품(등록일기준) 정렬하여 상품을 보여줌
-http://power933.cafe24.com/
 
 2 회원가입
 아이디,이메일 - ajax를 통해 onkeyup시 값을 중복체크를 진행
 카톡 로그인 - 비회원일시 회원가입 후 로그인처리
-http://power933.cafe24.com/join
 
 3 로그인
 로그인 시 세션에 아이디 및 이름 저장
-http://power933.cafe24.com/login
 
 4 상품page
 상품선택시 id값인 상품code를 통해 불러오며
 상품의 수량 선택 후 구매페이지나 장바구니페이지로 이동 가능(비회원 장바구니는 아직 미구현입니다)
-http://power933.cafe24.com/item?pcode=115357
+
 
 5 장바구니
 js를 통하여 체크박스클릭시 각 상품별 금액 및 총합금액을 나타내며
