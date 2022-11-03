@@ -41,7 +41,7 @@ public class OrderTest {
     public void insertTest(){
         String[] test = {"010","3412","2650"};
         String[] pc = {"111555","115357"};
-        int[] ct = {1,5};
+        int[] ct = {1,1115};
         int[] pric = {150000,251000};
         OrderPayRequestDTO orderPayRequestDTO = OrderPayRequestDTO.builder()
                 .ordernum("16515632457")
