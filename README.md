@@ -43,7 +43,7 @@ New Collection - 최신상품(등록일기준) 정렬하여 상품을 보여줌
 카톡 로그인 - 비회원일시 회원가입 후 로그인처리
 
 3 로그인
-로그인 시 세션에 아이디 및 이름 저장
+로그인 시 세션에 아이디 및 이름 저장, localstarage로 아이디 저
 
 4 상품page
 상품선택시 id값인 상품code를 통해 불러오며
@@ -53,6 +53,7 @@ New Collection - 최신상품(등록일기준) 정렬하여 상품을 보여줌
 5 장바구니
 js를 통하여 체크박스클릭시 각 상품별 금액 및 총합금액을 나타내며
 바로 구매, 전체 상품 구매시 상품의 코드 및 장바구니의 id값 전달(구매 확정 후 해당 장바구니 id 삭제)
+비회원 접속시 쿠키 mid가 없을경우 쿠키를 생성하고 쿠키로 mid잡고 장바구니 생성
 
 6 구매
 구매 API는 bootpay api를 이용했으며
@@ -72,8 +73,7 @@ http://power933.cafe24.com/notice
 http://power933.cafe24.com/company
 
 todo..
-로그인 시큐리티로 처리,비회원 장바구니 로컬스토리지로 추가
-
+로그인 시큐리티로 처리
 관리자 page 깃허브 url : https://github.com/power933/shoppingmall_admin
 
 
