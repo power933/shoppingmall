@@ -1,16 +1,15 @@
 package com.tj.shoppingmall;
 
-import com.tj.shoppingmall.user.cart.CartMemberDTO;
-import com.tj.shoppingmall.user.cart.CartProductDTO;
-import com.tj.shoppingmall.user.cart.CartResponseDTO;
-import com.tj.shoppingmall.user.cart.CartService;
+import com.tj.shoppingmall.user.domain.CartMemberDTO;
+import com.tj.shoppingmall.user.domain.CartProductDTO;
+import com.tj.shoppingmall.user.domain.CartResponseDTO;
+import com.tj.shoppingmall.user.service.CartService;
 import com.tj.shoppingmall.user.mapper.CartMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest

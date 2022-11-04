@@ -1,18 +1,13 @@
 package com.tj.shoppingmall;
 
 
-import com.tj.shoppingmall.user.item.ItemDTO;
-import com.tj.shoppingmall.user.mapper.OrderMapper;
-import com.tj.shoppingmall.user.order.OrderDTO;
-import com.tj.shoppingmall.user.order.OrderPayRequestDTO;
-import com.tj.shoppingmall.user.order.OrderService;
-import com.tj.shoppingmall.user.order.Test1;
+import com.tj.shoppingmall.user.domain.ItemDTO;
+import com.tj.shoppingmall.user.domain.OrderPayRequestDTO;
+import com.tj.shoppingmall.user.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -65,15 +60,6 @@ public class OrderTest {
         Integer[] cartId= {};
         System.out.println("orderService.insertOrder(orderPayRequestDTO) = " + orderService.insertOrder(orderPayRequestDTO,cartId));
 
-    }
-
-
-    @Test
-    public void convert_intstream_list_of_obj() {
-        List<Test1> students = IntStream.range(0, 5)
-                .mapToObj(i -> new Test1("name" + i, i + 10))
-                .collect(Collectors.toList());
-        System.out.println("students = " + students);
     }
 
 }

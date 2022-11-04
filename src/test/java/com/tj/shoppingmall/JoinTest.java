@@ -1,8 +1,8 @@
 package com.tj.shoppingmall;
 
-import com.tj.shoppingmall.user.join.JoinDTO;
-import com.tj.shoppingmall.user.join.JoinRequestDTO;
-import com.tj.shoppingmall.user.join.JoinService;
+import com.tj.shoppingmall.user.domain.JoinDTO;
+import com.tj.shoppingmall.user.domain.JoinRequestDTO;
+import com.tj.shoppingmall.user.service.JoinService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

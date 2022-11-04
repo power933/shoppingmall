@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
 <div class="title_container" style="display:none;">
   <h2><span designElement="text" textIndex="3">로그인</span></h2>
 </div>
@@ -80,16 +81,14 @@
       $(this).closest('li').addClass('on');
     });
   });
-  var id = document.getElementById("userid").value;
   var setid = localStorage.getItem("saveid");
-  id = setid;
+  document.getElementById("userid").value= setid;
   var check = document.getElementById("idsave");
 
   function nextpg(){
     if(check){
       if(check.checked){
-        var userid = document.getElementById("userid").value;
-        localStorage.setItem("saveid",saveid);
+        localStorage.setItem("saveid",document.getElementById("userid").value);
       }
       f.submit();
     }
@@ -100,9 +99,7 @@
   }
   document.getElementById("userid").value = storageid;
 
-</script>
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
-<script type="text/javascript">
+
   $(document).ready(function(){
     Kakao.init('293a5b17f513198b24992488489133b4');
     Kakao.isInitialized();

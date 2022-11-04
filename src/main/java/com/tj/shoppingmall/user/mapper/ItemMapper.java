@@ -1,6 +1,6 @@
 package com.tj.shoppingmall.user.mapper;
 
-import com.tj.shoppingmall.user.item.ItemDTO;
+import com.tj.shoppingmall.user.domain.ItemDTO;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +16,6 @@ public interface ItemMapper {
 
     @Select("select pstock from product where pcode=#{pcode}")
     ItemDTO getStock(String pcode);
+
+
 }

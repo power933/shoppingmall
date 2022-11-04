@@ -48,7 +48,7 @@
 				</c:choose>
                 <!-- <li><a href="/service/cs" designElement="text">CS CENTER</a></li> -->
                 <li class="respCartArea"><a href="./cart"><em designElement="text" textIndex="6">CART</em></a></li>
-				<li class="respMypage"><a href="#" designElement="text" textIndex="7"><em>MY SHOPPING</em></a></li>
+				<%--<li class="respMypage"><a href="#" designElement="text" textIndex="7"><em>MY SHOPPING</em></a></li>--%>
 			</ul>
 
 			<!-- 햄버거 버튼 -->

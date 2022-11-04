@@ -1,7 +1,7 @@
 package com.tj.shoppingmall;
 
-import com.tj.shoppingmall.user.company.CompanyDTO;
-import com.tj.shoppingmall.user.company.CompanyService;
+import com.tj.shoppingmall.user.domain.CompanyDTO;
+import com.tj.shoppingmall.user.service.CompanyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

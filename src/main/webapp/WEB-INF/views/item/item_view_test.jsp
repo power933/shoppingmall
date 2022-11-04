@@ -580,7 +580,6 @@
 <script>
   document.getElementById("buy_basket").addEventListener("click",ev => {
     var product_ea = document.getElementById("product_ea").value;
-    console.log("1");
     if(product_ea==0) alert("상품 수량을 선택해주세요")
     else{
       if(confirm("장바구니에 담았습니다 장바구니로 이동하시겠습니까?")){

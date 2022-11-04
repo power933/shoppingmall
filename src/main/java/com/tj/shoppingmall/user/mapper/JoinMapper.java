@@ -1,6 +1,6 @@
 package com.tj.shoppingmall.user.mapper;
 
-import com.tj.shoppingmall.user.join.JoinDTO;
+import com.tj.shoppingmall.user.domain.JoinDTO;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ public interface JoinMapper {
     public List<JoinDTO> getAll();
     @Insert("insert into members" +
             " values(#{mid},#{mpass},#{mname},#{memail}," +
-            "#{mtel},#{maddrnum},#{maddr},#{maddrdetail},#{indate})")
+            "#{mtel},#{maddrnum},#{maddr},#{maddrdetail},#{indate},#{mpoint})")
     public int memberInsert(JoinDTO joinDTO);
 
     @Select("select * from members where mid = #{mid}")

@@ -1,7 +1,7 @@
 package com.tj.shoppingmall.user.mapper;
 
-import com.tj.shoppingmall.user.notice.NoticeDTO;
-import com.tj.shoppingmall.user.notice.NoticeRequestDTO;
+import com.tj.shoppingmall.user.domain.NoticeDTO;
+import com.tj.shoppingmall.user.domain.NoticeRequestDTO;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 

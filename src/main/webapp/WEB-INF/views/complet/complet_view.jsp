@@ -37,7 +37,7 @@
                                     <div class="block block1">
                                         <ul>
                                             <li class="img_area">
-                                                <a href="#"><img src="" class="goods_thumb" alt="상품이미지" /></a>
+                                                <a href="#"><img src="${list.pimg1[status.index]}" class="goods_thumb" alt="상품이미지" /></a>
                                             </li>
                                             <li class="option_area">
                                                 <div class="goods_name v2 d2">
@@ -95,7 +95,7 @@
                         </span>
                     </li>
                     <li>
-                        ${list.person_phone[0]}-${list.person_phone[1]}-${list.person_phone[2]}
+                        ${list.person_phone[0]}-${list.person_phone[2]}-${list.person_phone[1]}
                     </li>
                     <li>
                         ${list.msg}

@@ -1,7 +1,7 @@
 package com.tj.shoppingmall;
 
-import com.tj.shoppingmall.user.login.LoginDTO;
-import com.tj.shoppingmall.user.login.LoginService;
+import com.tj.shoppingmall.user.domain.LoginDTO;
+import com.tj.shoppingmall.user.service.LoginService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

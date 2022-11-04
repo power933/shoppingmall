@@ -1,8 +1,8 @@
 package com.tj.shoppingmall;
 
-import com.tj.shoppingmall.user.index.IndexCategoryDTO;
-import com.tj.shoppingmall.user.index.IndexService;
-import com.tj.shoppingmall.user.item.ItemDTO;
+import com.tj.shoppingmall.user.domain.IndexCategoryDTO;
+import com.tj.shoppingmall.user.service.IndexService;
+import com.tj.shoppingmall.user.domain.ItemDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

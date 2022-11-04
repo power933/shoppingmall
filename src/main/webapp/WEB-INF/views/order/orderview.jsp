@@ -52,7 +52,7 @@
 </script>
 
 
-<div id="layout_body" class="layout_body">
+<c id="layout_body" class="layout_body">
   <style type="text/css">
     .resp_layer_pop .btn_view_coupons { position:absolute; right:60px; top:22px; }
     .subpage_wrap.order_payment.flyingMode .order_payment_right .order_subsection { position:fixed; right:0; top:0; z-index:100; width:100%; /*width:calc(40% - 20px);*/ }
@@ -87,9 +87,11 @@
         </div>
       </div>
     </div>
+  <c:if test="${cartID!=0}">
   <c:forEach var="cartId" items="${cartId}">
     <input type="hidden" value="${cartId}" name="cartId">
   </c:forEach>
+  </c:if>
 
     <div id="orderPaymentLayout" class="subpage_wrap order_payment" data-ezmark="undo">
       <div class="subpage_container v2 Pt0 order_payment_left">
@@ -141,7 +143,7 @@
                       <ul>
                         <li class="img_area">
                           <a href="#"><img src="${list.pimg1}" title="" alt="상품이미지" /></a>
-                          <input type="hidden" name="img1" value="${list.pimg1}">
+                          <input type="hidden" name="pimg1" value="${list.pimg1}">
                         </li>
                         <li class="option_area">
 
@@ -207,14 +209,14 @@
               <ul class="list_01 v2">
                 <li><input type="text" name="cname" id="cname" value="" class="pilsu" style="width:170px;" title="주문자 이름" placeholder="주문자 이름" required />
                 <li>
-                  <input type="tel" name="ctel1" id="ctel1" value="" class="pilsu" style="width:64px;" title="휴대폰" placeholder="휴대폰" required /> -
-                  <input type="tel" name="ctel2" id="ctel3" value="" class="pilsu size_phone" placeholder="휴대폰" required /> -
-                  <input type="tel" name="ctel3" id="ctel2" value="" class="pilsu size_phone" placeholder="휴대폰" required />
+                  <input type="tel" name="ctel1" id="ctel1" value="" class="pilsu" style="width:64px;" title="휴대폰" maxlength="4" placeholder="휴대폰" required /> -
+                  <input type="tel" name="ctel2" id="ctel3" value="" class="pilsu size_phone" maxlength="4" placeholder="휴대폰" required /> -
+                  <input type="tel" name="ctel3" id="ctel2" value="" class="pilsu size_phone" maxlength="4" placeholder="휴대폰" required />
                 </li>
                 <li>
-                  <input type="tel" name="chp1" id="chp1" value="" style="width:64px;" title="연락처2" placeholder="전화" /> -
-                  <input type="tel" name="chp2" id="chp2" value="" class="size_phone" placeholder="전화" /> -
-                  <input type="tel" name="chp3" id="chp3" value="" class="size_phone" placeholder="전화" />
+                  <input type="tel" name="chp1" id="chp1" value="" style="width:64px;" title="연락처2" maxlength="4" placeholder="전화" /> -
+                  <input type="tel" name="chp2" id="chp2" value="" class="size_phone" maxlength="4" placeholder="전화" /> -
+                  <input type="tel" name="chp3" id="chp3" value="" class="size_phone" maxlength="4" placeholder="전화" />
                   <span class="desc">(선택)</span>
                 </li>
                 <li><input type="email" name="cemail" id="cemail" value="" class="pilsu size_email_full" title="이메일" placeholder="주문자 이메일" required /></li>
@@ -248,14 +250,14 @@
                 </li>
                 <!-- 연락처 -->
                 <li>
-                  <input type="tel" name="person_phone" id="person_phone1" value="" class="pilsu" style="width:64px;"  title="휴대폰" placeholder="핸드폰" required /> -
-                  <input type="tel" name="person_phone" id="person_phone2" value="" class="pilsu size_phone"  placeholder="핸드폰" required /> -
-                  <input type="tel" name="person_phone" id="person_phone3" value="" class="pilsu size_phone"  placeholder="핸드폰" required />
+                  <input type="tel" name="person_phone" id="person_phone1" value="" class="pilsu" style="width:64px;" maxlength="4"  title="휴대폰" placeholder="핸드폰" required /> -
+                  <input type="tel" name="person_phone" id="person_phone2" value="" class="pilsu size_phone" maxlength="4"  placeholder="핸드폰" required /> -
+                  <input type="tel" name="person_phone" id="person_phone3" value="" class="pilsu size_phone" maxlength="4"  placeholder="핸드폰" required />
                 </li>
                 <li>
-                  <input type="tel" name="person_hp" id="person_hp1" value="" style="width:64px;"  title="연락처2" placeholder="전화" /> -
-                  <input type="tel" name="person_hp" id="person_hp2" value="" class="size_phone"  placeholder="전화" /> -
-                  <input type="tel" name="person_hp" id="person_hp3" value="" class="size_phone"  placeholder="전화" />
+                  <input type="tel" name="person_hp" id="person_hp1" value="" style="width:64px;"  maxlength="4" title="연락처2" placeholder="전화" /> -
+                  <input type="tel" name="person_hp" id="person_hp2" value="" class="size_phone"  maxlength="4" placeholder="전화" /> -
+                  <input type="tel" name="person_hp" id="person_hp3" value="" class="size_phone"  maxlength="4" placeholder="전화" />
                   <span class="desc">(선택)</span>
                 </li>
                 <!-- 이메일 -->
@@ -268,7 +270,7 @@
 
           <!-- 배송 메세지 -->
           <div id="shipMessage" class="ship_message">
-            <input type="text" class="ship_message_txt" name="memo" id="memo" value="" title="배송 메세지 입력" placeholder="배송 메세지 입력" autocomplete="off" />
+            <input type="text" class="ship_message_txt" name="msg" id="memo" value="" title="배송 메세지 입력" placeholder="배송 메세지 입력" autocomplete="off" />
           </div>
         </div>
       </div>
@@ -310,7 +312,7 @@
                     </li>
                   </ul>
                 </div>
-
+                <input type="hidden" name="mpoint" value="${totalresult/100}">
 
                 <!-- ++++++++++++++++++++ 결제 금액 :: END ++++++++++++++++++++ -->
 
@@ -446,7 +448,6 @@
                 <!-- 결제 버튼 -->
                 <div class="pay_layer btn_area_c" id="pay_layer1">
                   <input type="button" value="결제하기" name="button_pay" id="pay" class="btn_resp size_extra color2 Wmax" />
-                  <input type="button" value="테스트" name="button_pay" id="save" class="btn_resp size_extra color2 Wmax" />
                   <span class="hide"><input type="button" value="장바구니로" class="btn_resp size_extra" onclick="document.location.href='cart';" /></span>
                 </div>
               </div>

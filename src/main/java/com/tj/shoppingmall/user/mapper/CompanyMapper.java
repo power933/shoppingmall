@@ -1,6 +1,6 @@
 package com.tj.shoppingmall.user.mapper;
 
-import com.tj.shoppingmall.user.company.CompanyDTO;
+import com.tj.shoppingmall.user.domain.CompanyDTO;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 

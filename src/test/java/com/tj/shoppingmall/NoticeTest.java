@@ -1,9 +1,9 @@
 package com.tj.shoppingmall;
 
 import com.tj.shoppingmall.user.mapper.NoticeMapper;
-import com.tj.shoppingmall.user.notice.NoticeDTO;
-import com.tj.shoppingmall.user.notice.NoticeRequestDTO;
-import com.tj.shoppingmall.user.notice.NoticeService;
+import com.tj.shoppingmall.user.domain.NoticeDTO;
+import com.tj.shoppingmall.user.domain.NoticeRequestDTO;
+import com.tj.shoppingmall.user.service.NoticeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

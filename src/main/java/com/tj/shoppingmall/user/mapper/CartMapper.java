@@ -1,8 +1,8 @@
 package com.tj.shoppingmall.user.mapper;
 
-import com.tj.shoppingmall.user.cart.CartDTO;
-import com.tj.shoppingmall.user.cart.CartMemberDTO;
-import com.tj.shoppingmall.user.cart.CartProductDTO;
+import com.tj.shoppingmall.user.domain.CartDTO;
+import com.tj.shoppingmall.user.domain.CartMemberDTO;
+import com.tj.shoppingmall.user.domain.CartProductDTO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -21,4 +21,7 @@ public interface CartMapper {
     List<CartMemberDTO> getMemberList(String mid);
     @Delete("delete from cart where cartId = #{cartId}")
     int deleteCart(Integer cartId);
+
+    @Select("select * from cart where mid = #{mid}")
+    List<CartDTO> getCartByMid(String mid);
 }

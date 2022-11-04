@@ -22,8 +22,8 @@ public class MyBatisConfig {
     public DataSource batisDataSource() {
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        hikariConfig.setJdbcUrl("jdbc:mysql://umj7-009.cafe24.com:3306/power933?serverTimezone=UTC");
-        /*hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/power933?serverTimezone=UTC");*/
+        /*hikariConfig.setJdbcUrl("jdbc:mysql://umj7-009.cafe24.com:3306/power933?serverTimezone=UTC");*/
+        hikariConfig.setJdbcUrl("jdbc:mysql://localhost:3306/power933?serverTimezone=UTC");
         hikariConfig.setUsername("power933");
         hikariConfig.setPassword("so9332650!@");
         hikariConfig.setMinimumIdle(5);

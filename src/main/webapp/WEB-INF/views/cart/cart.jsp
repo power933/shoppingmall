@@ -187,9 +187,6 @@
             buy.action = "/order";
             buy.submit();
         })
-
-
-
     var size = $(".size").val();
         $(".btn_select_all").click(function() {
             var total = $("#totalprice1").val();
@@ -259,11 +256,7 @@
                 $(".btn_select_all").prop("checked", true);
             }
         });
-
-
-
     });
-
     document.getElementById("deletebtn").addEventListener("click", ev => {
         buy.action = "cartdelete";
         buy.method="post"
