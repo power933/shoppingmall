@@ -35,7 +35,7 @@
             <h3 class="title"><span designElement="text" textIndex="9"   >BANK INFO</span></h3>
             <ul class="menu">
                 <li class="company_bank">
-                    <p class="bank_info"><span designElement="text" textIndex="10"   >HOLDER</span> : 주식회사 0000 / 신한은행 1234-56-413414</p>
+                    <p class="bank_info"><span designElement="text" textIndex="10"   >HOLDER</span> : DesignTJ / 신한은행 915-5521-056854</p>
                 </li>
             </ul>
             <!-- //무통장 입금계좌 -->
@@ -44,7 +44,7 @@
             <h3 class="title"><span designElement="text" textIndex="11"   >DELIVERY INQUIRY</span></h3>
             <ul class="menu">					
                 <li class="besong_search">
-                    <span designElement="text" textIndex="12"   >DELIVERY : ${cominfo.sdelivery_name} 1588-0000</span> &nbsp; &nbsp;
+                    <span designElement="text" textIndex="12"   >DELIVERY : 대한통운 1588-5540</span> &nbsp; &nbsp;
                     <a href="#" target="_blank" title="새창" class="link_f" designElement="text" textIndex="13" alt="택배사 배송추적 주소를 입력하세요.">배송추적</a>
                 </li>
             </ul>
@@ -60,7 +60,7 @@
             <h3 class="title"><a href="/service/cs" designElement="text" textIndex="15"    target="_self">CS CENTER</a></h3>
             <ul class="menu">
                 <li class="company_phone">
-                    <a href="tel:02-1234-5678">${cominfo.stel}</a>
+                    <a href="tel:02-1234-5678">02-1234-5678</a>
                 </li>
                 <li class="open_close">
                     <p designElement="text" textIndex="16"   >MON-FRI : 10:00 ~ 19:00 &nbsp;</p>
@@ -75,7 +75,7 @@
             <h3 class="title"><span designElement="text" textIndex="18"   >BANK INFO</span></h3>
             <ul class="menu">
                 <li class="company_bank">
-                    <p class="bank_info"><span designElement="text" textIndex="19"   >HOLDER</span> : 주식회사 ${cominfo.scompany_name} / ${cominfo.sbank_name} ${cominfo.sbank_num}</p>
+                    <p class="bank_info"><span designElement="text" textIndex="19"   >HOLDER</span> : 주식회사 DesignTJ / 신한은행 915-5521-056854</p>
                 </li>
             </ul>
             <!-- //무통장 입금계좌 -->
@@ -84,7 +84,7 @@
             <h3 class="title"><span designElement="text" textIndex="20"   >매장안내</span></h3>
             <ul class="menu">
                  <li class="refund_address">
-                    <span designElement="text" textIndex="21"   >주소 :${cominfo.saddr}</span>
+                    <span designElement="text" textIndex="21"   >주소 :서울시 성북구 솔샘로 25길</span>
                 </li>
             </ul>
             <!-- //배송 정보 -->
@@ -104,13 +104,13 @@
         <div class="line">
             <ul class="menu3">
                 <li class="company"><span designElement="text" textIndex="22"   ></span> / <span class="pcolor">르네프로스트 X 아쿠아릭 /</span></li>
-                <li class="ceo"><span designElement="text" textIndex="23"   >CEO</span> : <span class="pcolor">${cominfo.scompany_name} </span></li>
+                <li class="ceo"><span designElement="text" textIndex="23"   >CEO</span> : <span class="pcolor">DesignTJ </span></li>
                 <li class="address"><span designElement="text" textIndex="24"   >ADDRESS</span> : <span class="pcolor"></span></li>
-                <li class="phone"><span designElement="text" textIndex="25"   >TEL</span> : <a href="${cominfo.stel}" class="link_f">${cominfo.stel}</a></li>
-                <li class="company"><span designElement="text" textIndex="26"   >COMPANY</span> : <span class="pcolor">${cominfo.scompany_name}</span></li>
-                <li class="business_license"><span designElement="text" textIndex="27"   >BUSINESS LICENCE</span> :  ${cominfo.sbn} &nbsp; &nbsp; <span class="link_f"><a href="#">사업자정보확인</a></span></li>
+                <li class="phone"><span designElement="text" textIndex="25"   >TEL</span> : <a href="02-1234-5678" class="link_f">02-1234-5678</a></li>
+                <li class="company"><span designElement="text" textIndex="26"   >COMPANY</span> : <span class="pcolor">DesignTJ</span></li>
+                <li class="business_license"><span designElement="text" textIndex="27"   >BUSINESS LICENCE</span> :  115-09582751 &nbsp; &nbsp; <span class="link_f"><a href="#">사업자정보확인</a></span></li>
                 <li class="mailselling_license"><span designElement="text" textIndex="28"   >ONLINE LICENCE</span> : <span class="pcolor">2022-인테리어-0576</span></li>
-                <li class="member_info_manager"><span designElement="text" textIndex="29"   ><span xss=removed>PRIVACY OFFICER</span></span> : <span class="pcolor">${cominfo.sres_name} (<a class="pcolor" href="mailto:test@gmail.com">${cominfo.semail}</a>)</span></li>
+                <li class="member_info_manager"><span designElement="text" textIndex="29"   ><span xss=removed>PRIVACY OFFICER</span></span> : <span class="pcolor">김창순 (<a class="pcolor" href="mailto:test@gmail.com">power933@naver.com</a>)</span></li>
                 
             </ul>
             <!-- //회사 정보 -->

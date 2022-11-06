@@ -8,6 +8,7 @@ import com.tj.shoppingmall.user.util.SetAlert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -29,22 +30,23 @@ public class CartController {
     @Autowired
     MakeRanNum makeRanNum;
     @RequestMapping("/cart")
-    public String cartView(Model model, HttpSession session, HttpServletRequest request){
+    public String cartView(Model model, HttpSession session, HttpServletRequest request, @CookieValue(name = "mid" ,required = false) String cookieId){
 
         LoginDTO loginDTO = (LoginDTO) session.getAttribute("user");
+        Cookie[] cookie = request.getCookies();
         String mid = "";
         List<CartProductDTO> list = null;
         if(loginDTO!=null) {    //로그인되었을 시
             mid = loginDTO.getMid();
-
         }
-        else{   //비회원시
-            Cookie[] cookie = request.getCookies();
+        else{   //비회원시,쿠키 존재시
+            if(cookie!=null) {
                 for (Cookie cookie1 : cookie) {
                     if (cookie1.getName().equals("mid")) {
                         mid = cookie1.getValue();
                     }
                 }
+            }
         }
         list = cartService.getCartList(mid);
         model.addAttribute("list", list);
@@ -55,7 +57,8 @@ public class CartController {
     }
     @RequestMapping("/cartinsert")
     public RedirectView cartInsert (Model model, String pcode, String product_count, String iscart,
-                                   HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+                                    HttpSession session, HttpServletRequest request, HttpServletResponse response,
+                                    @CookieValue(required = false, name = "mid") String iscookie) throws IOException {
 
         RedirectView redirectView = new RedirectView();
         LoginDTO loginDTO = (LoginDTO) session.getAttribute("user");
@@ -63,9 +66,13 @@ public class CartController {
         String mid = "";
         if(loginDTO!=null)  //로그인 되었을시 mid 세팅
             mid =loginDTO.getMid();
-        else if (allcookie==null){ // 쿠키값이 없을때 쿠키 생성
+
+        else if (iscookie==null){ // 쿠키값이 없을때 쿠키 생성
             mid = makeRanNum.makeRandomNumber();
             Cookie cookie = new Cookie("mid",mid);
+            cookie.setPath("/");
+            cookie.setMaxAge(60*60*24*7);
+            response.addCookie(cookie);
         }
         else{   //기존 쿠기가 있을 시
             for(Cookie c : allcookie){
@@ -74,7 +81,6 @@ public class CartController {
                 }
             }
         }
-
         int a = cartService.insertCart(mid, pcode, product_count);
         if(iscart.equals("Y")) {
             redirectView.setUrl("/cart");
@@ -90,11 +96,10 @@ public class CartController {
     public RedirectView carttest(@RequestParam("cart_option_seq[]") List<Integer> cartId){
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/cart");
-
-         if(cartService.deleteCart(cartId))
-             redirectView.setUrl("/cart");
-         else
-             redirectView.setUrl("/");
+        if(cartService.deleteCart(cartId))
+            redirectView.setUrl("/cart");
+        else
+            redirectView.setUrl("/");
 
         return redirectView;
     }

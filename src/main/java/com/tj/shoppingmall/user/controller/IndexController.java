@@ -22,7 +22,6 @@ public class IndexController {
         model.addAttribute("items",indexService.getItemByCategory(totalCate));     //카테고리별 아이템 리스트
         model.addAttribute("recent",indexService.getItemOrderByIndate());   //최신상품 리스트
         model.addAttribute("best",indexService.getItemOrderByPsales()); //판매순 리스트
-        model.addAttribute("cominfo",indexService.select().get(0)); //회사정보 리스트
 
         return "index/index";
     }

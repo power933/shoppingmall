@@ -58,7 +58,7 @@ public class OrderTest {
                 .priceeach(pric)
                 .build();
         Integer[] cartId= {};
-        System.out.println("orderService.insertOrder(orderPayRequestDTO) = " + orderService.insertOrder(orderPayRequestDTO,cartId));
+        /*System.out.println("orderService.insertOrder(orderPayRequestDTO) = " + orderService.insertOrder(orderPayRequestDTO,cartId));*/
 
     }
 
