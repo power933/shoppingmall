@@ -4,7 +4,7 @@
 Url : http://power933.cafe24.com
 
 1. 개발환경
-  언어 : Java(JDK 11) HTML/CSS, JavaScript
+  언어 : Java(JDK 11), HTML/CSS, JavaScript
 
   서버 : Apache Tomcat9.0
 
